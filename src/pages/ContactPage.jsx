@@ -1,0 +1,180 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
+
+const ContactPage = () => {
+    return (
+        <main className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 font-light">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                {/* Header */}
+                <div className="text-center mb-24">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-5xl md:text-7xl font-serif tracking-widest uppercase mb-6"
+                    >
+                        Get in <span className="text-amber italic">Touch</span>
+                    </motion.h1>
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="w-24 h-[1px] bg-emerald mx-auto mb-8 origin-left"
+                    />
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-ghost/70 max-w-2xl mx-auto text-lg leading-relaxed"
+                    >
+                        Whether you're ready to book a session, or just want to discuss some ideas, we'd love to hear from you.
+                    </motion.p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    {/* Contact Info & WhatsApp */}
+                    <div className="order-2 lg:order-1 space-y-12">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                            className="bg-forest/20 p-8 rounded border border-emerald/10"
+                        >
+                            <h3 className="text-2xl font-serif tracking-widest uppercase mb-8 text-ghost">Direct <span className="text-amber italic">Contact</span></h3>
+
+                            <ul className="space-y-6 text-ghost/80">
+                                <li className="flex items-start gap-4">
+                                    <MapPin className="text-emerald w-6 h-6 mt-1 flex-shrink-0" />
+                                    <div>
+                                        <p className="font-serif text-lg tracking-wide uppercase mb-1">Studio</p>
+                                        <p className="text-sm">123 Creative Lens Ave,<br />Artisan District, NY 10001</p>
+                                    </div>
+                                </li>
+                                <li className="flex items-center gap-4 group">
+                                    <Phone className="text-emerald w-6 h-6 flex-shrink-0 group-hover:text-amber transition-colors" />
+                                    <a href="tel:+1234567890" className="text-sm hover:text-amber transition-colors">+1 (234) 567-890</a>
+                                </li>
+                                <li className="flex items-center gap-4 group">
+                                    <Mail className="text-emerald w-6 h-6 flex-shrink-0 group-hover:text-amber transition-colors" />
+                                    <a href="mailto:hello@studio.com" className="text-sm hover:text-amber transition-colors">hello@studio.com</a>
+                                </li>
+                            </ul>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="bg-gradient-to-br from-[#25D366]/20 to-transparent p-8 rounded border border-[#25D366]/30 text-center"
+                        >
+                            <MessageCircle className="w-12 h-12 text-[#25D366] mx-auto mb-4" />
+                            <h3 className="text-xl font-serif tracking-widest uppercase mb-2 text-ghost">WhatsApp Us</h3>
+                            <p className="text-sm text-ghost/70 mb-6 font-light">For the fastest response, send us a message directly.</p>
+                            <a
+                                href="https://wa.me/1234567890"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-obsidian font-serif tracking-widest uppercase text-sm hover:bg-[#1ebe57] transition-colors rounded-full font-medium"
+                            >
+                                <MessageCircle className="w-4 h-4" /> Message on WhatsApp
+                            </a>
+                        </motion.div>
+                    </div>
+
+                    {/* Contact Form */}
+                    <div className="order-1 lg:order-2">
+                        <motion.form
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                            className="bg-forest/10 p-8 md:p-12 rounded border border-emerald/10 space-y-6"
+                            onSubmit={(e) => e.preventDefault()}
+                        >
+                            <h3 className="text-3xl font-serif tracking-widest uppercase mb-8 text-ghost text-center">Send a <span className="text-amber italic">Message</span></h3>
+
+                            <div className="space-y-1 relative">
+                                <label htmlFor="name" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Full Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    className="w-full bg-obsidian/50 border-b border-emerald/30 focus:border-amber px-4 py-3 text-ghost outline-none transition-colors rounded-t"
+                                    placeholder="Jane Doe"
+                                    required
+                                />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-1 relative">
+                                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Email Address</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        className="w-full bg-obsidian/50 border-b border-emerald/30 focus:border-amber px-4 py-3 text-ghost outline-none transition-colors rounded-t"
+                                        placeholder="jane@example.com"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-1 relative">
+                                    <label htmlFor="phone" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Phone Number</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        className="w-full bg-obsidian/50 border-b border-emerald/30 focus:border-amber px-4 py-3 text-ghost outline-none transition-colors rounded-t"
+                                        placeholder="+1 (555) 000-0000"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-1 relative">
+                                <label htmlFor="message" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Your Message</label>
+                                <textarea
+                                    id="message"
+                                    rows="5"
+                                    className="w-full bg-obsidian/50 border-b border-emerald/30 focus:border-amber px-4 py-3 text-ghost outline-none transition-colors resize-none rounded-t"
+                                    placeholder="Tell us about your event, preferred dates, and what you're looking for..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="group relative w-full flex items-center justify-center gap-2 px-8 py-4 bg-emerald/10 border border-emerald text-emerald hover:text-obsidian overflow-hidden transition-colors mt-8"
+                            >
+                                <div className="absolute inset-0 bg-emerald transform scale-y-0 origin-bottom transition-transform duration-300 ease-out group-hover:scale-y-100 z-0"></div>
+                                <span className="relative z-10 font-serif tracking-widest uppercase text-sm flex items-center gap-2">
+                                    Send Inquiry <Send className="w-4 h-4 ml-2" />
+                                </span>
+                            </button>
+                        </motion.form>
+                    </div>
+                </div>
+
+                {/* Google Maps Embed */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mt-24 w-full h-[400px] border border-emerald/10 rounded overflow-hidden relative group"
+                >
+                    <div className="absolute inset-0 bg-obsidian/40 mix-blend-color group-hover:opacity-0 transition-opacity duration-1000 z-10 pointer-events-none"></div>
+                    <iframe
+                        title="Studio Location"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.252799969!2d-74.14448744574944!3d40.69763123335198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1691515510659!5m2!1sen!2sus"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="grayscale contrast-125 hover:grayscale-0 transition-all duration-1000 w-full h-full"
+                    ></iframe>
+                </motion.div>
+
+            </div>
+        </main>
+    );
+};
+
+export default ContactPage;
