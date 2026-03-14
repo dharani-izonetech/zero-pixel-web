@@ -68,7 +68,7 @@ const Hero = () => {
                 />
             </div>
 
-            <div className="relative z-20 text-center px-6">
+            <div className="relative z-20 text-center px-6 w-full">
                 <motion.div
                     initial={{ opacity: 0, letterSpacing: "-0.5em" }}
                     animate={{ opacity: 1, letterSpacing: "0.2em" }}
@@ -78,11 +78,27 @@ const Hero = () => {
                     Redefining Digital Realism
                 </motion.div>
 
+                {/*
+                    ✅ MOBILE TITLE FIX:
+                    - text-[2.8rem]  → mobile (fits "ZERO PIXELS" on one line at ~390px)
+                    - sm:text-[4rem]  → small tablet
+                    - md:text-[7rem]  → tablet
+                    - lg:text-[10rem] → desktop
+                    - xl:text-[12rem] → large desktop
+                    - flex-wrap added so words wrap on very small screens if needed
+                    - gap reduced on mobile: gap-2 sm:gap-4
+                    - w-full + justify-center keeps it centered at all sizes
+                */}
                 <motion.h1
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="text-7xl md:text-[12rem] font-black tracking-tighter mb-10 leading-[0.8] flex justify-center items-center gap-4"
+                    className="
+                        w-full
+                        text-[2.8rem] sm:text-[4rem] md:text-[7rem] lg:text-[10rem] xl:text-[12rem]
+                        font-black tracking-tighter mb-10 leading-[0.85]
+                        flex flex-wrap justify-center items-center gap-2 sm:gap-4
+                    "
                 >
                     <div className="flex text-purple">
                         {title_1.split("").map((char, i) => (

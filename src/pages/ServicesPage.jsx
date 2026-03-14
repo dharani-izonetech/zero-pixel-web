@@ -9,7 +9,7 @@ const ServicesPage = () => {
             title: "Baby Shower",
             description: "Celebrate the arrival of new life with our specialized baby shower photography. We focus on capturing genuine emotions, the meticulously planned details, and the joyous interactions between family and friends.",
             features: ["Pre-event consultation", "2-4 hours coverage", "Online private gallery", "High-res edited images"],
-            image: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&q=80&w=1200",
+            image: "/src/assets/images/2026 website photos/babyshower/DSC09457 copy.jpg",
             reverse: false
         },
         {
@@ -17,7 +17,7 @@ const ServicesPage = () => {
             title: "Birthday",
             description: "From intimate gatherings to grand milestone celebrations, our birthday photography preserves the laughter, the surprises, and the unforgettable moments that define the special day.",
             features: ["Candid & structured shots", "Event coverage", "Rapid delivery", "Custom albums available"],
-            image: "https://images.unsplash.com/photo-1530103862676-de8892cae1ef?auto=format&fit=crop&q=80&w=1200",
+            image: "/src/assets/images/2026 website photos/birthday/004.jpg",
             reverse: true
         },
         {
@@ -25,7 +25,7 @@ const ServicesPage = () => {
             title: "Drone",
             description: "Elevate your visual storytelling with our professional drone photography. Perfect for large-scale events, real estate, and cinematic landscape perspectives that cannot be captured from the ground.",
             features: ["4K Video capabilities", "Licensed operators", "Unique aerial angles", "Dynamic fly-throughs"],
-            image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=1200",
+            image: "/src/assets/images/2026 website photos/Drone/003 copy.jpg",
             reverse: false
         },
         {
@@ -33,7 +33,7 @@ const ServicesPage = () => {
             title: "Indoor",
             description: "Our indoor sessions utilize professional studio lighting or masterful manipulation of natural window light to create elegant, timeless portraits in a controlled environment.",
             features: ["Studio setups", "Backdrop selections", "Professional lighting", "Creative direction"],
-            image: "https://images.unsplash.com/photo-1506509658097-400d724eb8cc?auto=format&fit=crop&q=80&w=1200",
+            image: "/src/assets/images/2026 website photos/indoor/002.jpg",
             reverse: true
         },
         {
@@ -41,7 +41,7 @@ const ServicesPage = () => {
             title: "Outdoor",
             description: "Immerse your subjects in nature. We specialize in finding the perfect locations and utilizing the natural 'golden hour' light to create breathtaking, dynamic outdoor portraits.",
             features: ["Location scouting", "Natural lighting mastery", "Action shots", "Environmental portraits"],
-            image: "https://images.unsplash.com/photo-1517457210115-c21124231b14?auto=format&fit=crop&q=80&w=1200",
+            image: "/src/assets/images/2026 website photos/outdoor/001 copy.jpg",
             reverse: false
         }
     ];

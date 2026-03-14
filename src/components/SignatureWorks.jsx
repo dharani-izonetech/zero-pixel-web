@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const SignatureWorks = () => {
     const containerRef = useRef(null);
     const triggerRef = useRef(null);
@@ -14,50 +16,46 @@ const SignatureWorks = () => {
         if (sections.length === 0) return;
 
         let ctx = gsap.context(() => {
-            // High-Performance Horizontal Scroll
-            const horizontalTween = gsap.to(sections, {
+            // ✅ Only slide the panels horizontally — NO image x-shift (that caused black gaps)
+            gsap.to(sections, {
                 xPercent: -100 * (sections.length - 1),
                 ease: "none",
                 scrollTrigger: {
                     trigger: triggerRef.current,
                     pin: true,
                     scrub: 1,
-                    snap: 1 / (sections.length - 1),
+                    snap: {
+                        snapTo: 1 / (sections.length - 1),
+                        duration: { min: 0.3, max: 0.6 },
+                        ease: "power1.inOut",
+                    },
                     start: "top top",
-                    end: () => "+=" + containerRef.current.offsetWidth,
+                    // ✅ Correct end: scroll distance = (n-1) slides × 100vw
+                    end: () => `+=${window.innerWidth * (sections.length - 1)}`,
                     invalidateOnRefresh: true,
                 }
             });
 
-            // Coordinated Parallax
+            // ✅ Only animate the title — no image movement at all
             sections.forEach((section) => {
-                const img = section.querySelector('.parallax-img');
                 const title = section.querySelector('.work-title');
-
-                gsap.to(img, {
-                    x: 150,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: section,
-                        containerAnimation: horizontalTween,
-                        start: "left right",
-                        end: "right left",
-                        scrub: true
-                    }
-                });
-
-                gsap.to(title, {
-                    scale: 1.1,
-                    opacity: 1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: section,
-                        containerAnimation: horizontalTween,
-                        start: "left center",
-                        end: "center center",
-                        scrub: true
-                    }
-                });
+                if (title) {
+                    gsap.fromTo(title,
+                        { opacity: 0.4, y: 30 },
+                        {
+                            opacity: 0.85,
+                            y: 0,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: section,
+                                containerAnimation: gsap.getTweensOf(sections)[0],
+                                start: "left center",
+                                end: "center center",
+                                scrub: true,
+                            }
+                        }
+                    );
+                }
             });
         }, containerRef);
 
@@ -66,59 +64,162 @@ const SignatureWorks = () => {
 
     const works = [
         {
-            title: "Eternal Vows",
+            title: "Forever Begins",
             category: "Wedding",
-            image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=2069"
+            image: "/src/assets/images/2026 website photos/AJAP8615_RNS_RNS1.jpg",
+            position: "50% 30%"
         },
         {
-            title: "Corporate Vision",
-            category: "Business",
-            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&q=80&w=2069"
+            title: "Joyful Celebration",
+            category: "Birthday",
+            image: "/src/assets/images/2026 website photos/birthday/003.jpg",
+            position: "50% 20%"
         },
         {
-            title: "Brand Anthem",
-            category: "Commercial",
-            image: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?auto=format&fit=crop&q=80&w=2070"
+            title: "Skyline Perspectives",
+            category: "Drone",
+            image: "/src/assets/images/2026 website photos/Drone/003 copy.jpg",
+            position: "50% 50%"
         },
         {
-            title: "Candid Grace",
-            category: "Portraits",
-            image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000"
+            title: "Elegant Moments",
+            category: "Indoor",
+            image: "/src/assets/images/2026 website photos/indoor/001.jpg",
+            position: "50% 20%"
+        },
+        {
+            title: "Nature Frames",
+            category: "Outdoor",
+            image: "/src/assets/images/2026 website photos/outdoor/8V3A1586 copy.jpg",
+            position: "50% 40%"
         }
     ];
 
     return (
-        <section id="works" ref={triggerRef} className="overflow-hidden bg-forest">
-            <div ref={containerRef} className="flex h-screen w-[400vw]">
+        <section
+            id="works"
+            ref={triggerRef}
+            style={{
+                background: '#000',
+                overflow: 'hidden',
+            }}
+        >
+            <div
+                ref={containerRef}
+                style={{
+                    display: 'flex',
+                    width: `${works.length * 100}vw`,
+                    height: '100vh',
+                }}
+            >
                 {works.map((work, index) => (
                     <div
                         key={index}
-                        className="work-item relative h-screen w-screen flex-shrink-0 flex items-center justify-center overflow-hidden"
+                        className="work-item"
+                        style={{
+                            position: 'relative',
+                            width: '100vw',
+                            height: '100vh',
+                            flexShrink: 0,
+                            overflow: 'hidden',
+                            background: '#000',
+                        }}
                     >
-                        <div className="absolute inset-0 overflow-hidden">
-                            <img
-                                src={work.image}
-                                alt={work.title}
-                                className="parallax-img w-[140%] h-full object-cover scale-110"
-                            />
-                            <div className="absolute inset-0 bg-forest/20 backdrop-blur-[2px]" />
-                        </div>
+                        {/*
+                            ✅ IMAGE: absolute inset-0, w-full h-full, object-cover
+                            — fills every pixel of the 100vw × 100vh slide
+                            — NO transform, NO x-shift, NO scale
+                            — object-position focuses on face/subject
+                            — Result: full crisp image, zero black bars on any side
+                        */}
+                        <img
+                            src={work.image}
+                            alt={work.title}
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                objectPosition: work.position,
+                                display: 'block',
+                                // ✅ No transform here — prevents any gap/shift
+                            }}
+                        />
 
-                        <div className="relative z-10 text-center px-6">
-                            <p className="cinematic-text mb-6 text-emerald font-light tracking-[0.4em] uppercase text-sm">{work.category}</p>
-                            <h2 className="work-title text-6xl md:text-[10rem] font-serif font-light tracking-wide capitalize leading-[1] flex flex-wrap justify-center overflow-hidden opacity-70">
+                        {/* Gradient overlay for text readability only — no blur, no color */}
+                        <div
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, rgba(0,0,0,0.05) 100%)',
+                                pointerEvents: 'none',
+                            }}
+                        />
+
+                        {/* Text content */}
+                        <div
+                            style={{
+                                position: 'relative',
+                                zIndex: 10,
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                padding: '0 1.5rem',
+                            }}
+                        >
+                            <p
+                                style={{
+                                    marginBottom: '1.5rem',
+                                    color: '#5a9e7c',
+                                    fontWeight: 300,
+                                    letterSpacing: '0.4em',
+                                    textTransform: 'uppercase',
+                                    fontSize: '0.875rem',
+                                }}
+                            >
+                                {work.category}
+                            </p>
+
+                            <h2
+                                className="work-title"
+                                style={{
+                                    fontSize: 'clamp(2.5rem, 9vw, 10rem)',
+                                    fontFamily: 'serif',
+                                    fontWeight: 300,
+                                    letterSpacing: '0.04em',
+                                    textTransform: 'capitalize',
+                                    lineHeight: 1,
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    justifyContent: 'center',
+                                    gap: '0 1.5rem',
+                                    opacity: 0.85,
+                                }}
+                            >
                                 {work.title.split(' ').map((word, i) => (
-                                    <span key={i} className="inline-block overflow-hidden mr-8 last:mr-0">
+                                    <span
+                                        key={i}
+                                        style={{ display: 'inline-block', overflow: 'hidden' }}
+                                    >
                                         <motion.span
-                                            initial={{ y: "100%", skewY: 10 }}
+                                            initial={{ y: '100%', skewY: 8 }}
                                             whileInView={{ y: 0, skewY: 0 }}
                                             viewport={{ once: false, amount: 0.1 }}
                                             transition={{
-                                                duration: 1.5,
+                                                duration: 1.2,
                                                 ease: [0.16, 1, 0.3, 1],
-                                                delay: i * 0.1
+                                                delay: i * 0.1,
                                             }}
-                                            className={`inline-block ${i % 2 !== 0 ? 'text-amber italic font-serif' : 'text-ghost font-serif'}`}
+                                            style={{
+                                                display: 'inline-block',
+                                                color: i % 2 !== 0 ? '#c9a84c' : '#f0ece4',
+                                                fontStyle: i % 2 !== 0 ? 'italic' : 'normal',
+                                            }}
                                         >
                                             {word}
                                         </motion.span>
@@ -127,8 +228,28 @@ const SignatureWorks = () => {
                             </h2>
                         </div>
 
-                        <div className="absolute top-24 right-24 z-20">
-                            <span className="text-[8rem] font-serif font-light text-emerald/20 italic select-none">0{index + 1}</span>
+                        {/* Slide index number */}
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '5rem',
+                                right: '5rem',
+                                zIndex: 20,
+                                lineHeight: 1,
+                            }}
+                        >
+                            <span
+                                style={{
+                                    fontSize: 'clamp(4rem, 8vw, 8rem)',
+                                    fontFamily: 'serif',
+                                    fontWeight: 300,
+                                    color: 'rgba(90,158,124,0.15)',
+                                    fontStyle: 'italic',
+                                    userSelect: 'none',
+                                }}
+                            >
+                                0{index + 1}
+                            </span>
                         </div>
                     </div>
                 ))}

@@ -59,7 +59,7 @@ const About = () => {
                         className="w-full h-full relative"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1554046920-90dc5f212239?auto=format&fit=crop&q=80&w=1000"
+                            src="/src/assets/images/2026 website photos/AJAP8810_RNS.jpg"
                             alt="Photographer holding a vintage camera"
                             className="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-1000"
                         />
