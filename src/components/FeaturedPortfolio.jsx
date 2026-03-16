@@ -1,36 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import photo1 from '../assets/images/2026 website photos/babyshower/DSC09469 copy.jpg';
+import photo2 from '../assets/images/2026 website photos/birthday/03.jpg';
+import photo3 from '../assets/images/2026 website photos/Drone/003 copy.jpg';
+import photo4 from '../assets/images/2026 website photos/indoor/001.jpg';
+import photo5 from '../assets/images/2026 website photos/outdoor/1 (5) copy.jpg';
 
 const FeaturedPortfolio = () => {
     const portfolioItems = [
-        { 
-            id: 1, category: "Baby Shower", 
-            src: "/src/assets/images/2026 website photos/babyshower/DSC09469 copy.jpg", 
+        {
+            id: 1, category: "Baby Shower",
+            src: photo1,
             span: "col-span-1 row-span-2",
             position: "object-center"  // portrait image - center focus
         },
-        { 
-            id: 2, category: "Birthday", 
-            src: "/src/assets/images/2026 website photos/birthday/03.jpg", 
+        {
+            id: 2, category: "Birthday",
+            src: photo2,
             span: "col-span-2 row-span-1",
             position: "object-top"     // show baby's face at top
         },
-        { 
-            id: 3, category: "Drone", 
-            src: "/src/assets/images/2026 website photos/Drone/003 copy.jpg", 
+        {
+            id: 3, category: "Drone",
+            src: photo3,
             span: "col-span-1 row-span-1",
             position: "object-center"  // landscape drone - center
         },
-        { 
-            id: 4, category: "Indoor", 
-            src: "/src/assets/images/2026 website photos/indoor/001.jpg", 
+        {
+            id: 4, category: "Indoor",
+            src: photo4,
             span: "col-span-1 row-span-2",
             position: "object-top"     // portrait - show face
         },
-        { 
-            id: 5, category: "Outdoor", 
-            src: "/src/assets/images/2026 website photos/outdoor/1 (5) copy.jpg", 
+        {
+            id: 5, category: "Outdoor",
+            src: photo5,
             span: "col-span-2 row-span-1",
             position: "object-center"  // couple - center
         },
@@ -75,7 +80,7 @@ const FeaturedPortfolio = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4"
-                     style={{ gridTemplateRows: 'repeat(3, minmax(260px, 1fr))' }}>
+                    style={{ gridTemplateRows: 'repeat(3, minmax(260px, 1fr))' }}>
                     {portfolioItems.map((item, index) => (
                         <motion.div
                             key={item.id}
