@@ -111,7 +111,7 @@ import image105 from '../assets/images/2026-website-photos/AJAP9476 copy 2.jpg';
 import image106 from '../assets/images/2026-website-photos/AJAP9512 copy.jpg';
 import image107 from '../assets/images/2026-website-photos/GRA00795 copy.jpg';
 import image108 from '../assets/images/2026-website-photos/GRA00822 copy.jpg';
-import image109 from '../assets/images/2026-website-photos/Groom 02 copy.jpg';
+import image109 from '../assets/images/2026-website-photos/Groom 02.jpg';
 import image110 from '../assets/images/2026-website-photos/Groom 05.jpg';
 import image111 from '../assets/images/2026-website-photos/Groom 06 copy.jpg';
 import image112 from '../assets/images/2026-website-photos/Pondy outdoor copy01.jpg';
@@ -323,17 +323,16 @@ const Portfolio = () => {
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
-                            className={`px-6 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 border ${
-                                activeCategory === category
+                            className={`px-6 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 border ${activeCategory === category
                                     ? 'bg-emerald text-obsidian border-emerald'
                                     : 'bg-transparent text-ghost border-emerald/20 hover:border-amber hover:text-amber'
-                            }`}
+                                }`}
                         >
                             {category}
                         </button>
                     ))}
                 </motion.div>
-                
+
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
                     <AnimatePresence>
                         {filteredItems.map((item, index) => (
