@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import image1 from '../assets/images/2026-website-photos/AJAP3578.jpg';
+import image2 from '../assets/images/2026-website-photos/Groom 02 copy.jpg';
 
 const Story = () => {
     return (
@@ -57,7 +59,7 @@ const Story = () => {
                             className="aspect-[3/4] overflow-hidden border border-purple/10"
                         >
                             <img
-                                src="/src/assets/images/2026 website photos/AJAP3578.jpg"
+                                src={image1}
                                 alt="Story 1"
                                 className="w-full h-full object-cover hover:grayscale-0 transition-all duration-1000 scale-110 hover:scale-100"
                             />
@@ -70,7 +72,7 @@ const Story = () => {
                             className="aspect-[4/5] overflow-hidden mt-16 border border-cyan/10"
                         >
                             <img
-                                src="/src/assets/images/2026 website photos/8V3A9494 copy.jpg"
+                                src={image2}
                                 alt="Story 2"
                                 className="w-full h-full object-cover hover:grayscale-0 transition-all duration-1000 scale-110 hover:scale-100"
                             />

@@ -4,10 +4,10 @@ import { Award, Heart, Clock, Camera } from 'lucide-react';
 
 const ClientExperience = () => {
     const stats = [
-        { label: "Years Experience", value: "10+", icon: Clock },
-        { label: "Happy Clients", value: "500+", icon: Heart },
+        { label: "Years Experience", value: "15", icon: Clock },
+        { label: "Happy Clients", value: "2.5k", icon: Heart },
         { label: "Awards Won", value: "15", icon: Award },
-        { label: "Shoots Completed", value: "1.2k", icon: Camera }
+        { label: "Shoots Completed", value: "7k+", icon: Camera }
     ];
 
     return (

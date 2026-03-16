@@ -1,43 +1,45 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import photo1 from '../assets/images/2026 website photos/babyshower/DSC09469 copy.jpg';
-import photo2 from '../assets/images/2026 website photos/birthday/03.jpg';
-import photo3 from '../assets/images/2026 website photos/Drone/003 copy.jpg';
-import photo4 from '../assets/images/2026 website photos/indoor/001.jpg';
-import photo5 from '../assets/images/2026 website photos/outdoor/1 (5) copy.jpg';
+
+// Image Imports
+import image1 from '../assets/images/2026-website-photos/babyshower/DSC09469 copy.jpg';
+import image2 from '../assets/images/2026-website-photos/birthday/03.jpg';
+import image3 from '../assets/images/2026-website-photos/Drone/003 copy.jpg';
+import image4 from '../assets/images/2026-website-photos/indoor/001.jpg';
+import image5 from '../assets/images/2026-website-photos/outdoor/1 (5) copy.jpg';
 
 const FeaturedPortfolio = () => {
     const portfolioItems = [
-        {
-            id: 1, category: "Baby Shower",
-            src: photo1,
+        { 
+            id: 1, category: "Baby Shower", 
+            src: image1, 
             span: "col-span-1 row-span-2",
-            position: "object-center"  // portrait image - center focus
+            position: "object-center"
         },
-        {
-            id: 2, category: "Birthday",
-            src: photo2,
+        { 
+            id: 2, category: "Birthday", 
+            src: image2, 
             span: "col-span-2 row-span-1",
-            position: "object-top"     // show baby's face at top
+            position: "object-top"
         },
-        {
-            id: 3, category: "Drone",
-            src: photo3,
+        { 
+            id: 3, category: "Drone", 
+            src: image3, 
             span: "col-span-1 row-span-1",
-            position: "object-center"  // landscape drone - center
+            position: "object-center"
         },
-        {
-            id: 4, category: "Indoor",
-            src: photo4,
+        { 
+            id: 4, category: "Indoor", 
+            src: image4, 
             span: "col-span-1 row-span-2",
-            position: "object-top"     // portrait - show face
+            position: "object-top"
         },
-        {
-            id: 5, category: "Outdoor",
-            src: photo5,
+        { 
+            id: 5, category: "Outdoor", 
+            src: image5, 
             span: "col-span-2 row-span-1",
-            position: "object-center"  // couple - center
+            position: "object-center"
         },
     ];
 

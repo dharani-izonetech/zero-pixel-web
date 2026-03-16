@@ -8,7 +8,7 @@ const Hero = () => {
     const containerRef = useRef(null);
 
     const title_1 = "ZERO";
-    const title_2 = "PIXELS";
+    const title_2 = "PIXEL";
 
     const containerVariants = {
         hidden: { opacity: 0 },

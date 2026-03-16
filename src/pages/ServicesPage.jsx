@@ -2,22 +2,63 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+// Image Imports
+import weddingImg from '../assets/images/2026-website-photos/8K4A8926 copy.jpg';
+import corporateImg from '../assets/images/2026-website-photos/St01.jpg';
+import promotionImg from '../assets/images/2026-website-photos/ZPS21698.JPG';
+import babyShowerImg from '../assets/images/2026-website-photos/babyshower/DSC09457 copy.jpg';
+import indoorImg from '../assets/images/2026-website-photos/indoor/002.jpg';
+import outdoorImg from '../assets/images/2026-website-photos/outdoor/001 copy.jpg';
+import droneImg from '../assets/images/2026-website-photos/Drone/003 copy.jpg';
+
 const ServicesPage = () => {
     const serviceDetails = [
+        {
+            id: "wedding",
+            title: "Wedding",
+            description: "Capturing the timeless elegance and raw emotions of your special day. From the first look to the final dance, we document every precious chapter of your love story.",
+            features: ["Full day coverage", "Engagement session", "Fine art editing", "Luxury wedding album"],
+            image: weddingImg,
+            reverse: false
+        },
+        {
+            id: "corporate",
+            title: "Corporate Events",
+            description: "Professional visual coverage for conferences, summits, and corporate gatherings. We capture the energy, networking, and key moments that define your business success.",
+            features: ["Event documentation", "Speaker portraits", "Rapid turnaround", "Commercial usage rights"],
+            image: corporateImg,
+            reverse: true
+        },
+        {
+            id: "promotion",
+            title: "Promotion",
+            description: "Strategic brand storytelling through high-impact photography. Perfect for product launches, marketing campaigns, and elevating your professional identity.",
+            features: ["Personal branding", "Social media content", "Marketing focus", "Creative art direction"],
+            image: promotionImg,
+            reverse: false
+        },
         {
             id: "babyshower",
             title: "Baby Shower",
             description: "Celebrate the arrival of new life with our specialized baby shower photography. We focus on capturing genuine emotions, the meticulously planned details, and the joyous interactions between family and friends.",
             features: ["Pre-event consultation", "2-4 hours coverage", "Online private gallery", "High-res edited images"],
-            image: "/src/assets/images/2026 website photos/babyshower/DSC09457 copy.jpg",
+            image: babyShowerImg,
+            reverse: true
+        },
+        {
+            id: "indoor",
+            title: "Indoor",
+            description: "Our indoor sessions utilize professional studio lighting or masterful manipulation of natural window light to create elegant, timeless portraits in a controlled environment.",
+            features: ["Studio setups", "Backdrop selections", "Professional lighting", "Creative direction"],
+            image: indoorImg,
             reverse: false
         },
         {
-            id: "birthday",
-            title: "Birthday",
-            description: "From intimate gatherings to grand milestone celebrations, our birthday photography preserves the laughter, the surprises, and the unforgettable moments that define the special day.",
-            features: ["Candid & structured shots", "Event coverage", "Rapid delivery", "Custom albums available"],
-            image: "/src/assets/images/2026 website photos/birthday/004.jpg",
+            id: "outdoor",
+            title: "Outdoor",
+            description: "Immerse your subjects in nature. We specialize in finding the perfect locations and utilizing the natural 'golden hour' light to create breathtaking, dynamic outdoor portraits.",
+            features: ["Location scouting", "Natural lighting mastery", "Action shots", "Environmental portraits"],
+            image: outdoorImg,
             reverse: true
         },
         {
@@ -25,23 +66,7 @@ const ServicesPage = () => {
             title: "Drone",
             description: "Elevate your visual storytelling with our professional drone photography. Perfect for large-scale events, real estate, and cinematic landscape perspectives that cannot be captured from the ground.",
             features: ["4K Video capabilities", "Licensed operators", "Unique aerial angles", "Dynamic fly-throughs"],
-            image: "/src/assets/images/2026 website photos/Drone/003 copy.jpg",
-            reverse: false
-        },
-        {
-            id: "indoor",
-            title: "Indoor",
-            description: "Our indoor sessions utilize professional studio lighting or masterful manipulation of natural window light to create elegant, timeless portraits in a controlled environment.",
-            features: ["Studio setups", "Backdrop selections", "Professional lighting", "Creative direction"],
-            image: "/src/assets/images/2026 website photos/indoor/002.jpg",
-            reverse: true
-        },
-        {
-            id: "outdoor",
-            title: "Outdoor",
-            description: "Immerse your subjects in nature. We specialize in finding the perfect locations and utilizing the natural 'golden hour' light to create breathtaking, dynamic outdoor portraits.",
-            features: ["Location scouting", "Natural lighting mastery", "Action shots", "Environmental portraits"],
-            image: "/src/assets/images/2026 website photos/outdoor/001 copy.jpg",
+            image: droneImg,
             reverse: false
         }
     ];

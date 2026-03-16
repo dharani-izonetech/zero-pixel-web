@@ -3,6 +3,13 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// Image Imports
+import image1 from '../assets/images/2026-website-photos/AJAP8615_RNS_RNS1.jpg';
+import image2 from '../assets/images/2026-website-photos/birthday/003.jpg';
+import image3 from '../assets/images/2026-website-photos/Drone/003 copy.jpg';
+import image4 from '../assets/images/2026-website-photos/indoor/001.jpg';
+import image5 from '../assets/images/2026-website-photos/outdoor/8V3A1586 copy.jpg';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const SignatureWorks = () => {
@@ -66,31 +73,31 @@ const SignatureWorks = () => {
         {
             title: "Forever Begins",
             category: "Wedding",
-            image: "/src/assets/images/2026 website photos/AJAP8615_RNS_RNS1.jpg",
+            image: image1,
             position: "50% 30%"
         },
         {
             title: "Joyful Celebration",
             category: "Birthday",
-            image: "/src/assets/images/2026 website photos/birthday/003.jpg",
+            image: image2,
             position: "50% 20%"
         },
         {
             title: "Skyline Perspectives",
             category: "Drone",
-            image: "/src/assets/images/2026 website photos/Drone/003 copy.jpg",
+            image: image3,
             position: "50% 50%"
         },
         {
             title: "Elegant Moments",
             category: "Indoor",
-            image: "/src/assets/images/2026 website photos/indoor/001.jpg",
+            image: image4,
             position: "50% 20%"
         },
         {
             title: "Nature Frames",
             category: "Outdoor",
-            image: "/src/assets/images/2026 website photos/outdoor/8V3A1586 copy.jpg",
+            image: image5,
             position: "50% 40%"
         }
     ];
