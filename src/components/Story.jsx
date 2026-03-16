@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import image1 from '../assets/images/2026-website-photos/AJAP3578.jpg';
-import image2 from '../assets/images/2026-website-photos/Groom 02 copy.jpg';
+import image2 from '../assets/images/2026-website-photos/Groom 02.jpg';
 
 const Story = () => {
     return (
