@@ -1,27 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Camera, Video, Mountain, Baby, Cake } from 'lucide-react';
+import { Camera, Video, Mountain, Baby, Heart, Briefcase, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ServicesOverview = () => {
     const services = [
         {
+            title: "Wedding",
+            description: "Capturing the timeless elegance and raw emotions of your special day.",
+            icon: Heart,
+            link: "/services#wedding"
+        },
+        {
+            title: "Corporate Events",
+            description: "Professional visual coverage for conferences and corporate gatherings.",
+            icon: Briefcase,
+            link: "/services#corporate"
+        },
+        {
+            title: "Promotion",
+            description: "Strategic brand storytelling through high-impact photography.",
+            icon: Target,
+            link: "/services#promotion"
+        },
+        {
             title: "Baby Shower",
             description: "Capturing the joy and anticipation of welcoming new life.",
             icon: Baby,
             link: "/services#babyshower"
-        },
-        {
-            title: "Birthday",
-            description: "Preserving the celebrations and milestones of another year.",
-            icon: Cake,
-            link: "/services#birthday"
-        },
-        {
-            title: "Drone",
-            description: "Breathtaking aerial perspectives that tell a grander story.",
-            icon: Video,
-            link: "/services#drone"
         },
         {
             title: "Indoor",
@@ -34,6 +40,12 @@ const ServicesOverview = () => {
             description: "Harnessing natural light and stunning landscapes for dynamic shots.",
             icon: Mountain,
             link: "/services#outdoor"
+        },
+        {
+            title: "Drone",
+            description: "Breathtaking aerial perspectives that tell a grander story.",
+            icon: Video,
+            link: "/services#drone"
         }
     ];
 
@@ -95,7 +107,7 @@ const ServicesOverview = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
                     {services.map((service, index) => {
                         const Icon = service.icon;

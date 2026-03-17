@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Camera, Eye, Heart, Award } from 'lucide-react';
+import aboutHeroImg from '../assets/images/2026-website-photos/AJAP8810_RNS.jpg';
 
 const About = () => {
     const values = [
@@ -59,11 +60,10 @@ const About = () => {
                         className="w-full h-full relative"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1554046920-90dc5f212239?auto=format&fit=crop&q=80&w=1000"
+                            src={aboutHeroImg}
                             alt="Photographer holding a vintage camera"
-                            className="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-1000"
+                            className="w-full h-full object-cover rounded-sm transition-all duration-1000"
                         />
-                        <div className="absolute inset-0 bg-emerald/10 mix-blend-color"></div>
                     </motion.div>
                 </div>
             </section>

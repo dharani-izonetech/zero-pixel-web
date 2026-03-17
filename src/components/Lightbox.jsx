@@ -41,12 +41,13 @@ const Lightbox = ({ isOpen, items, currentIndex, onClose, onNavigate }) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-obsidian/95 backdrop-blur-sm"
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-obsidian/95 backdrop-blur-sm"
                 >
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-6 right-6 z-50 p-2 text-ghost/70 hover:text-amber transition-colors"
+                        className="absolute top-6 right-6 z-[110] p-3 rounded-full bg-ghost/10 text-ghost hover:bg-ghost/20 hover:text-amber transition-all shadow-sm"
+                        aria-label="Close"
                     >
                         <X className="w-8 h-8" />
                     </button>
@@ -54,7 +55,8 @@ const Lightbox = ({ isOpen, items, currentIndex, onClose, onNavigate }) => {
                     {/* Navigation Prev */}
                     <button
                         onClick={(e) => { e.stopPropagation(); onNavigate('prev') }}
-                        className="absolute left-6 top-1/2 -translate-y-1/2 z-50 p-4 text-ghost/50 hover:text-amber transition-colors"
+                        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-[110] p-4 rounded-full bg-ghost/5 text-ghost/80 hover:bg-ghost/10 hover:text-amber transition-all backdrop-blur-md"
+                        aria-label="Previous image"
                     >
                         <ChevronLeft className="w-10 h-10" />
                     </button>
@@ -62,7 +64,8 @@ const Lightbox = ({ isOpen, items, currentIndex, onClose, onNavigate }) => {
                     {/* Navigation Next */}
                     <button
                         onClick={(e) => { e.stopPropagation(); onNavigate('next') }}
-                        className="absolute right-6 top-1/2 -translate-y-1/2 z-50 p-4 text-ghost/50 hover:text-amber transition-colors"
+                        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-[110] p-4 rounded-full bg-ghost/5 text-ghost/80 hover:bg-ghost/10 hover:text-amber transition-all backdrop-blur-md"
+                        aria-label="Next image"
                     >
                         <ChevronRight className="w-10 h-10" />
                     </button>

@@ -94,7 +94,7 @@ const ContactPage = () => {
                             <h3 className="text-3xl font-serif tracking-widest uppercase mb-8 text-ghost text-center">Send a <span className="text-amber italic">Message</span></h3>
 
                             <div className="space-y-1 relative">
-                                <label htmlFor="name" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Full Name</label>
+                                <label htmlFor="name" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Full Name</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -106,7 +106,7 @@ const ContactPage = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-1 relative">
-                                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Email Address</label>
+                                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Email Address</label>
                                     <input
                                         type="email"
                                         id="email"
@@ -116,7 +116,7 @@ const ContactPage = () => {
                                     />
                                 </div>
                                 <div className="space-y-1 relative">
-                                    <label htmlFor="phone" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Phone Number</label>
+                                    <label htmlFor="phone" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Phone Number</label>
                                     <input
                                         type="tel"
                                         id="phone"
@@ -127,7 +127,7 @@ const ContactPage = () => {
                             </div>
 
                             <div className="space-y-1 relative">
-                                <label htmlFor="message" className="text-xs uppercase tracking-widest text-emerald/80 ml-1">Your Message</label>
+                                <label htmlFor="message" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Your Message</label>
                                 <textarea
                                     id="message"
                                     rows="5"

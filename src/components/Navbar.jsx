@@ -45,7 +45,7 @@ const Navbar = () => {
                             className="flex items-center gap-2"
                         >
                             <Camera className="w-6 h-6" />
-                            <span className="text-xl font-bold tracking-tighter uppercase">ZERO PIXELS</span>
+                            <span className="text-xl font-bold tracking-tighter uppercase">ZERO PIXEL</span>
                         </motion.div>
                     </Link>
 

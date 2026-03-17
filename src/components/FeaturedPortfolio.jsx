@@ -2,14 +2,45 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+// Image Imports
+import image1 from '../assets/images/2026-website-photos/babyshower/DSC09469 copy.jpg';
+import image2 from '../assets/images/2026-website-photos/birthday/03.jpg';
+import image3 from '../assets/images/2026-website-photos/Drone/003 copy.jpg';
+import image4 from '../assets/images/2026-website-photos/indoor/001.jpg';
+import image5 from '../assets/images/2026-website-photos/outdoor/1 (5) copy.jpg';
+
 const FeaturedPortfolio = () => {
-    // Placeholder image URLs and categories since actual folders were not found
     const portfolioItems = [
-        { id: 1, category: "Baby Shower", src: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?auto=format&fit=crop&q=80&w=800", span: "col-span-1 row-span-2" },
-        { id: 2, category: "Birthday", src: "https://images.unsplash.com/photo-1530103862676-de8892cae1ef?auto=format&fit=crop&q=80&w=800", span: "col-span-2 row-span-1" },
-        { id: 3, category: "Drone", src: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=800", span: "col-span-1 row-span-1" },
-        { id: 4, category: "Indoor", src: "https://images.unsplash.com/photo-1506509658097-400d724eb8cc?auto=format&fit=crop&q=80&w=800", span: "col-span-1 row-span-2" },
-        { id: 5, category: "Outdoor", src: "https://images.unsplash.com/photo-1517457210115-c21124231b14?auto=format&fit=crop&q=80&w=800", span: "col-span-2 row-span-1" },
+        { 
+            id: 1, category: "Baby Shower", 
+            src: image1, 
+            span: "col-span-1 row-span-2",
+            position: "object-center"
+        },
+        { 
+            id: 2, category: "Birthday", 
+            src: image2, 
+            span: "col-span-2 row-span-1",
+            position: "object-top"
+        },
+        { 
+            id: 3, category: "Drone", 
+            src: image3, 
+            span: "col-span-1 row-span-1",
+            position: "object-center"
+        },
+        { 
+            id: 4, category: "Indoor", 
+            src: image4, 
+            span: "col-span-1 row-span-2",
+            position: "object-top"
+        },
+        { 
+            id: 5, category: "Outdoor", 
+            src: image5, 
+            span: "col-span-2 row-span-1",
+            position: "object-center"
+        },
     ];
 
     return (
@@ -50,7 +81,8 @@ const FeaturedPortfolio = () => {
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-3 gap-4 md:h-[800px]">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4"
+                    style={{ gridTemplateRows: 'repeat(3, minmax(260px, 1fr))' }}>
                     {portfolioItems.map((item, index) => (
                         <motion.div
                             key={item.id}
@@ -58,15 +90,19 @@ const FeaturedPortfolio = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: index * 0.1 }}
-                            className={`relative group overflow-hidden ${item.span} bg-forest/20 rounded-lg`}
+                            className={`relative group overflow-hidden ${item.span} rounded-lg`}
                         >
+                            {/* ✅ object-cover + smart position = no black bars, no crop waste */}
                             <img
                                 src={item.src}
                                 alt={item.category}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                className={`absolute inset-0 w-full h-full object-cover ${item.position} transition-transform duration-700 group-hover:scale-110`}
                             />
+
                             <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                                <h3 className="text-2xl font-serif text-ghost tracking-widest uppercase">{item.category}</h3>
+                                <h3 className="text-2xl font-serif text-ghost tracking-widest uppercase">
+                                    {item.category}
+                                </h3>
                             </div>
                         </motion.div>
                     ))}
