@@ -129,7 +129,7 @@ import image123 from '../assets/images/2026-website-photos/ZPS22882.jpg';
 import image124 from '../assets/images/2026-website-photos/ZPS22947.jpg';
 import image125 from '../assets/images/2026-website-photos/8K4A8926 copy.jpg';
 import image126 from '../assets/images/2026-website-photos/St01.jpg';
-import image127 from '../assets/images/2026-website-photos/ZPS21698.JPG';
+import image127 from '../assets/images/2026-website-photos/ZPS21698.jpg';
 import image128 from '../assets/images/2026-website-photos/indoor/002.jpg';
 
 const Portfolio = () => {
