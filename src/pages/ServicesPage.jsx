@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // Image Imports
 import weddingImg from '../assets/images/2026-website-photos/8K4A8926 copy.jpg';
 import corporateImg from '../assets/images/2026-website-photos/St01.jpg';
-import promotionImg from '../assets/images/2026-website-photos/ZPS21698.JPG';
+import promotionImg from '../assets/images/2026-website-photos/ZPS21698.jpg';
 import babyShowerImg from '../assets/images/2026-website-photos/babyshower/DSC09457 copy.jpg';
 import indoorImg from '../assets/images/2026-website-photos/indoor/002.jpg';
 import outdoorImg from '../assets/images/2026-website-photos/outdoor/001 copy.jpg';
