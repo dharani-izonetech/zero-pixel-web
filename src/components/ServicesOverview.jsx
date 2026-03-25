@@ -115,7 +115,7 @@ const ServicesOverview = () => {
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="group relative bg-obsidian/50 border border-emerald/10 p-8 rounded hover:border-amber/50 transition-colors duration-500 flex flex-col items-center text-center h-full"
+                                className="group relative bg-obsidian/50 border-2 border-emerald/30 p-8 rounded hover:border-amber/50 transition-colors duration-500 flex flex-col items-center text-center h-full"
                             >
                                 <div className="p-4 rounded-full bg-forest/80 mb-6 group-hover:scale-110 transition-transform duration-500 ring-1 ring-emerald/20">
                                     <Icon className="w-8 h-8 text-emerald group-hover:text-amber transition-colors duration-500" strokeWidth={1.5} />
