@@ -349,6 +349,8 @@ const Portfolio = () => {
                                 <img
                                     src={item.src}
                                     alt={item.category}
+                                    loading="lazy"
+                                    decoding="async"
                                     className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
                                 />
 

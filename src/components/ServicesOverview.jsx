@@ -6,46 +6,52 @@ import { Link } from 'react-router-dom';
 const ServicesOverview = () => {
     const services = [
         {
-            title: "Wedding",
-            description: "Capturing the timeless elegance and raw emotions of your special day.",
+            title: "Wedding & Candid",
+            description: "Cinematic wedding storytelling, capturing every candid moment with artistic precision.",
             icon: Heart,
             link: "/services#wedding"
         },
         {
-            title: "Corporate Events",
-            description: "Professional visual coverage for conferences and corporate gatherings.",
-            icon: Briefcase,
-            link: "/services#corporate"
+            title: "Pre & Post Wedding",
+            description: "Beautifully choreographed shoots in stunning locations to celebrate your love story.",
+            icon: Camera,
+            link: "/services#wedding"
         },
         {
-            title: "Promotion",
-            description: "Strategic brand storytelling through high-impact photography.",
-            icon: Target,
-            link: "/services#promotion"
+            title: "Cinematography",
+            description: "High-end motion picture coverage that turns your events into cinematic masterpieces.",
+            icon: Video,
+            link: "/services#wedding"
         },
         {
-            title: "Baby Shower",
-            description: "Capturing the joy and anticipation of welcoming new life.",
+            title: "Newborn & Baby",
+            description: "Gentle and creative photography capturing the earliest milestones of your little ones.",
             icon: Baby,
             link: "/services#babyshower"
         },
         {
-            title: "Indoor",
-            description: "Studio-quality lighting and composed settings for elegant portraits.",
-            icon: Camera,
-            link: "/services#indoor"
+            title: "Maternity",
+            description: "Graceful portraits celebrating the beauty and journey of motherhood.",
+            icon: Target,
+            link: "/services#babyshower"
         },
         {
-            title: "Outdoor",
-            description: "Harnessing natural light and stunning landscapes for dynamic shots.",
+            title: "Model & Product",
+            description: "Professional portfolio shoots and high-impact commercial product photography.",
+            icon: Briefcase,
+            link: "/services#promotion"
+        },
+        {
+            title: "Drone Coverage",
+            description: "Epic aerial perspectives for a truly grand view of your celebrations.",
             icon: Mountain,
-            link: "/services#outdoor"
+            link: "/services#drone"
         },
         {
-            title: "Drone",
-            description: "Breathtaking aerial perspectives that tell a grander story.",
-            icon: Video,
-            link: "/services#drone"
+            title: "Live Streaming",
+            description: "Real-time high-quality streaming services for weddings and events worldwide.",
+            icon: Target,
+            link: "/services#corporate"
         }
     ];
 
@@ -112,23 +118,27 @@ const ServicesOverview = () => {
                     {services.map((service, index) => {
                         const Icon = service.icon;
                         return (
-                            <motion.div
+                            <Link
                                 key={index}
-                                variants={itemVariants}
-                                className="group relative bg-obsidian/50 border-2 border-emerald/30 p-8 rounded hover:border-amber/50 transition-colors duration-500 flex flex-col items-center text-center h-full"
+                                to={service.link}
+                                className="block h-full no-underline"
                             >
-                                <div className="p-4 rounded-full bg-forest/80 mb-6 group-hover:scale-110 transition-transform duration-500 ring-1 ring-emerald/20">
-                                    <Icon className="w-8 h-8 text-emerald group-hover:text-amber transition-colors duration-500" strokeWidth={1.5} />
-                                </div>
-                                <h3 className="text-xl font-serif tracking-wide uppercase mb-4 text-ghost">{service.title}</h3>
-                                <p className="text-ghost/60 text-sm leading-relaxed mb-6 flex-grow">{service.description}</p>
-                                <Link
-                                    to={service.link}
-                                    className="mt-auto text-xs uppercase tracking-[0.2em] text-emerald hover:text-amber transition-colors duration-300 flex items-center gap-2"
+                                <motion.div
+                                    variants={itemVariants}
+                                    className="group relative bg-obsidian/50 border-2 border-emerald/30 p-8 rounded hover:border-amber/50 transition-colors duration-500 flex flex-col items-center text-center h-full cursor-pointer"
                                 >
-                                    Explore <span className="block w-4 h-[1px] bg-current transition-all duration-300 group-hover:w-8" />
-                                </Link>
-                            </motion.div>
+                                    <div className="p-4 rounded-full bg-forest/80 mb-6 group-hover:scale-110 transition-transform duration-500 ring-1 ring-emerald/20">
+                                        <Icon className="w-8 h-8 text-emerald group-hover:text-amber transition-colors duration-500" strokeWidth={1.5} />
+                                    </div>
+                                    <h3 className="text-xl font-serif tracking-wide uppercase mb-4 text-ghost">{service.title}</h3>
+                                    <p className="text-ghost/60 text-sm leading-relaxed mb-6 flex-grow">{service.description}</p>
+                                    <div
+                                        className="mt-auto text-xs uppercase tracking-[0.2em] text-emerald group-hover:text-amber transition-colors duration-300 flex items-center gap-2"
+                                    >
+                                        Explore <span className="block w-4 h-[1px] bg-current transition-all duration-300 group-hover:w-8" />
+                                    </div>
+                                </motion.div>
+                            </Link>
                         );
                     })}
                 </motion.div>

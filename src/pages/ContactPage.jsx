@@ -39,7 +39,7 @@ const ContactPage = () => {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
-                            className="bg-forest/20 p-8 rounded border border-emerald/10"
+                            className="bg-forest/20 p-8 rounded border border-emerald/40"
                         >
                             <h3 className="text-2xl font-serif tracking-widest uppercase mb-8 text-ghost">Direct <span className="text-amber italic">Contact</span></h3>
 
@@ -48,16 +48,16 @@ const ContactPage = () => {
                                     <MapPin className="text-emerald w-6 h-6 mt-1 flex-shrink-0" />
                                     <div>
                                         <p className="font-serif text-lg tracking-wide uppercase mb-1">Studio</p>
-                                        <p className="text-sm">123 Creative Lens Ave,<br />Artisan District, NY 10001</p>
+                                        <p className="text-base font-medium text-ghost/70">Karumandapam & LIC Colony,<br />Tiruchirappalli, Tamil Nadu</p>
                                     </div>
                                 </li>
                                 <li className="flex items-center gap-4 group">
                                     <Phone className="text-emerald w-6 h-6 flex-shrink-0 group-hover:text-amber transition-colors" />
-                                    <a href="tel:+1234567890" className="text-sm hover:text-amber transition-colors">+1 (234) 567-890</a>
+                                    <a href="tel:+918056636662" className="text-base font-medium text-ghost/70 hover:text-amber transition-colors">+91 80 566 36662</a>
                                 </li>
                                 <li className="flex items-center gap-4 group">
                                     <Mail className="text-emerald w-6 h-6 flex-shrink-0 group-hover:text-amber transition-colors" />
-                                    <a href="mailto:hello@studio.com" className="text-sm hover:text-amber transition-colors">hello@studio.com</a>
+                                    <a href="https://zeropixelstudio.in" target="_blank" rel="noreferrer" className="text-base font-medium text-ghost/70 hover:text-amber transition-colors">zeropixelstudio.in</a>
                                 </li>
                             </ul>
                         </motion.div>
@@ -66,13 +66,13 @@ const ContactPage = () => {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.8 }}
-                            className="bg-gradient-to-br from-[#25D366]/20 to-transparent p-8 rounded border border-[#25D366]/30 text-center"
+                            className="bg-gradient-to-br from-[#25D366]/20 to-transparent p-8 rounded border border-[#25D366]/60 text-center"
                         >
                             <MessageCircle className="w-12 h-12 text-[#25D366] mx-auto mb-4" />
                             <h3 className="text-xl font-serif tracking-widest uppercase mb-2 text-ghost">WhatsApp Us</h3>
                             <p className="text-sm text-ghost/70 mb-6 font-light">For the fastest response, send us a message directly.</p>
                             <a
-                                href="https://wa.me/1234567890"
+                                href="https://wa.me/918056636662"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-obsidian font-serif tracking-widest uppercase text-sm hover:bg-[#1ebe57] transition-colors rounded-full font-medium"
@@ -88,13 +88,13 @@ const ContactPage = () => {
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
-                            className="bg-forest/10 p-8 md:p-12 rounded border border-emerald/10 space-y-6"
+                            className="bg-forest/10 p-8 md:p-12 rounded border border-emerald/40 space-y-6"
                             onSubmit={(e) => e.preventDefault()}
                         >
                             <h3 className="text-3xl font-serif tracking-widest uppercase mb-8 text-ghost text-center">Send a <span className="text-amber italic">Message</span></h3>
 
                             <div className="space-y-1 relative">
-                                <label htmlFor="name" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Full Name</label>
+                                <label htmlFor="name" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{ fontWeight: 600, fontSize: '15px' }}>Full Name</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -106,7 +106,7 @@ const ContactPage = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-1 relative">
-                                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Email Address</label>
+                                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{ fontWeight: 600, fontSize: '15px' }}>Email Address</label>
                                     <input
                                         type="email"
                                         id="email"
@@ -116,7 +116,7 @@ const ContactPage = () => {
                                     />
                                 </div>
                                 <div className="space-y-1 relative">
-                                    <label htmlFor="phone" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Phone Number</label>
+                                    <label htmlFor="phone" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{ fontWeight: 600, fontSize: '15px' }}>Phone Number</label>
                                     <input
                                         type="tel"
                                         id="phone"
@@ -127,7 +127,7 @@ const ContactPage = () => {
                             </div>
 
                             <div className="space-y-1 relative">
-                                <label htmlFor="message" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{fontWeight: 600, fontSize: '15px'}}>Your Message</label>
+                                <label htmlFor="message" className="text-xs uppercase tracking-widest text-emerald/80 ml-1" style={{ fontWeight: 600, fontSize: '15px' }}>Your Message</label>
                                 <textarea
                                     id="message"
                                     rows="5"
@@ -161,7 +161,7 @@ const ContactPage = () => {
                     <div className="absolute inset-0 bg-obsidian/40 mix-blend-color group-hover:opacity-0 transition-opacity duration-1000 z-10 pointer-events-none"></div>
                     <iframe
                         title="Studio Location"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.252799969!2d-74.14448744574944!3d40.69763123335198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1691515510659!5m2!1sen!2sus"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125423.0645000571!2d78.61898555776269!3d10.775209384955734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf50ff2dba5d7%3A0x10269377464a4d6f!2sTiruchirappalli%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1711714510659!5m2!1sen!2sin"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}

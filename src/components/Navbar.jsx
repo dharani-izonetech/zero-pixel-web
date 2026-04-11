@@ -3,6 +3,8 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Menu, X, Camera } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
+import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg.jpeg';
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -38,14 +40,13 @@ const Navbar = () => {
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-                    <Link to="/" className="flex items-center gap-2 text-purple">
+                    <Link to="/" className="flex items-center text-purple">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-2"
+                            className="h-[3.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl"
                         >
-                            <Camera className="w-6 h-6" />
-                            <span className="text-xl font-bold tracking-tighter uppercase">ZERO PIXEL</span>
+                            <img src={logo} alt="ZEROPIXEL" className="h-full w-auto object-contain" />
                         </motion.div>
                     </Link>
 

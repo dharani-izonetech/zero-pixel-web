@@ -97,7 +97,7 @@ const Hero = () => {
                         w-full
                         text-[2.8rem] sm:text-[4rem] md:text-[7rem] lg:text-[10rem] xl:text-[12rem]
                         font-black tracking-tighter mb-10 leading-[0.85]
-                        flex flex-wrap justify-center items-center gap-2 sm:gap-4
+                        flex justify-center items-center
                     "
                 >
                     <div className="flex text-purple">
