@@ -71,12 +71,6 @@ const Navbar = () => {
                                 </Link>
                             )
                         })}
-                        <Link
-                            to="/contact"
-                            className="px-6 py-2 border border-purple/30 text-ghost text-xs font-bold uppercase tracking-widest hover:bg-purple hover:border-purple transition-all duration-300 rounded-sm"
-                        >
-                            Inquiry
-                        </Link>
                     </div>
 
                     {/* Mobile Toggle */}

@@ -46,7 +46,7 @@ const Lightbox = ({ isOpen, items, currentIndex, onClose, onNavigate }) => {
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-6 right-6 z-[110] p-3 rounded-full bg-ghost/10 text-ghost hover:bg-ghost/20 hover:text-amber transition-all shadow-sm"
+                        className="absolute top-20 right-20 z-[110] p-3 rounded-full bg-ghost/10 text-ghost hover:bg-ghost/20 hover:text-amber transition-all shadow-sm"
                         aria-label="Close"
                     >
                         <X className="w-8 h-8" />

@@ -78,17 +78,6 @@ const Hero = () => {
                     Leading Photography Professionals
                 </motion.div>
 
-                {/*
-                    ✅ MOBILE TITLE FIX:
-                    - text-[2.8rem]  → mobile (fits "ZERO PIXELS" on one line at ~390px)
-                    - sm:text-[4rem]  → small tablet
-                    - md:text-[7rem]  → tablet
-                    - lg:text-[10rem] → desktop
-                    - xl:text-[12rem] → large desktop
-                    - flex-wrap added so words wrap on very small screens if needed
-                    - gap reduced on mobile: gap-2 sm:gap-4
-                    - w-full + justify-center keeps it centered at all sizes
-                */}
                 <motion.h1
                     variants={containerVariants}
                     initial="hidden"
@@ -96,7 +85,7 @@ const Hero = () => {
                     className="
                         w-full
                         text-[2.8rem] sm:text-[4rem] md:text-[7rem] lg:text-[10rem] xl:text-[12rem]
-                        font-black tracking-tighter mb-10 leading-[0.85]
+                        font-black tracking-tighter mb-4 leading-[0.85]
                         flex justify-center items-center
                     "
                 >
@@ -115,6 +104,15 @@ const Hero = () => {
                         ))}
                     </div>
                 </motion.h1>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 1.5 }}
+                    className="text-amber italic text-lg sm:text-2xl md:text-3xl tracking-[0.5em] uppercase mb-12"
+                >
+                    Photography Studio
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

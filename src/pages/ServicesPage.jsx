@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 // Image Imports
 import weddingImg from '../assets/images/2026-website-photos/8K4A8926 copy.jpg';
-import corporateImg from '../assets/images/2026-website-photos/St01.jpg';
+import corporateImg from '../assets/images/2026-website-photos/corporate.jpeg';
 import promotionImg from '../assets/images/2026-website-photos/ZPS21698.jpg';
 import babyShowerImg from '../assets/images/2026-website-photos/babyshower/DSC09457 copy.jpg';
 import indoorImg from '../assets/images/2026-website-photos/indoor/002.jpg';
@@ -18,7 +18,7 @@ const ServicesPage = () => {
         if (location.hash) {
             const element = document.getElementById(location.hash.slice(1));
             if (element) {
-                // Wait a bit for the page to render and Lenis to initialize if needed
+                // Wait a bit for the page to re    nder and Lenis to initialize if needed
                 setTimeout(() => {
                     element.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
