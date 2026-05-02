@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Menu, X, Camera } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg.jpeg';
+import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);

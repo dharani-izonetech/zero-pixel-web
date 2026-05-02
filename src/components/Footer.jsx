@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Camera, Instagram, Twitter, Linkedin } from 'lucide-react';
-import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg.jpeg';
+import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg';
 
 const Footer = () => {
     return (
@@ -51,7 +51,7 @@ const Footer = () => {
                             <p className="text-xs uppercase tracking-[0.3em] font-bold text-purple">Services</p>
                             <ul className="space-y-4 text-sm text-ghost/60 font-light-500">
                                 <li><Link to="/services#wedding" className="hover:text-amber transition-colors">Wedding</Link></li>
-                                <li><Link to="/services#corporate" className="hover:text-amber transition-colors">Corporate</Link></li>
+                                <li><Link to="/services#corporate" className="hover:text-amber transition-colors">Corporate Events</Link></li>
                                 <li><Link to="/services#promotion" className="hover:text-amber transition-colors">Promotion</Link></li>
                                 <li><Link to="/services#babyshower" className="hover:text-amber transition-colors">Baby Shower</Link></li>
                                 <li><Link to="/services#indoor" className="hover:text-amber transition-colors">Indoor</Link></li>
