@@ -44,7 +44,7 @@ const Navbar = () => {
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="h-[3.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl"
+                            className="h-[5.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl hover:border-purple/30 transition-all"
                         >
                             <img src={logo} alt="ZEROPIXEL" className="h-full w-auto object-contain" />
                         </motion.div>
@@ -75,8 +75,8 @@ const Navbar = () => {
 
                     {/* Mobile Toggle */}
                     <div className="md:hidden">
-                        <button onClick={() => setIsOpen(!isOpen)} className="text-purple relative z-[110]">
-                            {isOpen ? <X /> : <Menu />}
+                        <button onClick={() => setIsOpen(!isOpen)} className="text-amber hover:text-emerald transition-colors p-2 relative z-[130]">
+                            {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
                         </button>
                     </div>
                 </div>

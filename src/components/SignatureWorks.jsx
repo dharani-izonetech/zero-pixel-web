@@ -182,11 +182,12 @@ const SignatureWorks = () => {
                             <p
                                 style={{
                                     marginBottom: '1.5rem',
-                                    color: '#5a9e7c',
-                                    fontWeight: 300,
-                                    letterSpacing: '0.4em',
+                                    color: (work.category === 'Outdoor' || work.category === 'Drone') ? '#ffffff' : '#c9a84c',
+                                    fontWeight: 700,
+                                    letterSpacing: '0.6em',
                                     textTransform: 'uppercase',
-                                    fontSize: '0.875rem',
+                                    fontSize: '1rem',
+                                    textShadow: '0 2px 10px rgba(0,0,0,0.5)'
                                 }}
                             >
                                 {work.category}

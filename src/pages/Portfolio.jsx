@@ -1,6 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Play, Loader2 } from 'lucide-react';
 import Lightbox from '../components/Lightbox';
+import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg';
 
 // Image Imports
 import image1 from '../assets/images/2026-website-photos/babyshower/DSC09486 copy.jpg';
@@ -144,6 +146,29 @@ import image138 from '../assets/images/2026-website-photos/ZPS22947.jpg';
 import image139 from '../assets/images/2026-website-photos/corporate.jpeg';
 import image140 from '../assets/images/2026-website-photos/indoor/002.jpg';
 
+const ImageWithLoader = ({ src, alt, category, onClick }) => {
+    const [isLoaded, setIsLoaded] = React.useState(false);
+
+    return (
+        <div className="relative w-full h-full min-h-[200px] bg-obsidian-light/20 flex items-center justify-center">
+            {!isLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                    <Loader2 className="w-8 h-8 text-amber animate-spin" />
+                </div>
+            )}
+            <img
+                src={src}
+                alt={alt}
+                loading="lazy"
+                decoding="async"
+                onLoad={() => setIsLoaded(true)}
+                className={`w-full h-auto block transition-all duration-700 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                onClick={onClick}
+            />
+        </div>
+    );
+};
+
 const Portfolio = () => {
     const portfolioItems = useMemo(() => [
         { id: 1, category: "Baby Shower", src: image1 },
@@ -285,18 +310,100 @@ const Portfolio = () => {
         { id: 137, category: "Wedding", src: image137 },
         { id: 138, category: "Wedding", src: image138 },
         { id: 139, category: "Corporate Events", src: image139 },
-        { id: 140, category: "Indoor", src: image140 }
+        { id: 140, category: "Indoor", src: image140 },
+        // Promotion Videos
+        { id: 141, category: "Promotion", type: "video", videoId: "L9Q5F3tYmc4", title: "Luxury Property Showcase", subtitle: "Real Estate Promotion" },
+        { id: 142, category: "Promotion", type: "video", videoId: "43p4vf2Xcn4", title: "Brand Spotlight", subtitle: "Promotion Video" },
+        { id: 143, category: "Promotion", type: "video", videoId: "rSiopuke1YA", title: "Product Launch", subtitle: "Corporate Events" }
     ], []);
 
     const categories = ["All", "Wedding", "Corporate Events", "Promotion", "Baby Shower", "Indoor", "Outdoor", "Drone"];
     const [activeCategory, setActiveCategory] = useState("All");
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [filterLoading, setFilterLoading] = useState(true);
+    const [numCols, setNumCols] = useState(3);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) setNumCols(3);
+            else if (window.innerWidth >= 768) setNumCols(2);
+            else setNumCols(1);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const filteredItems = useMemo(() => {
-        if (activeCategory === "All") return portfolioItems;
+        if (activeCategory === "All") return portfolioItems.filter(item => item.type !== 'video');
         return portfolioItems.filter(item => item.category === activeCategory);
     }, [activeCategory, portfolioItems]);
+
+    const masonryColumns = useMemo(() => {
+        const cols = Array.from({ length: numCols }, () => []);
+        filteredItems.forEach((item, i) => {
+            cols[i % numCols].push(item);
+        });
+        return cols;
+    }, [filteredItems, numCols]);
+
+    useEffect(() => {
+        setFilterLoading(true);
+        const imagesToLoad = filteredItems
+            .filter(item => item.type !== 'video')
+            .slice(0, 6)
+            .map(item => item.src);
+
+        if (imagesToLoad.length === 0) {
+            setFilterLoading(false);
+            return;
+        }
+
+        let loaded = 0;
+        let imagesReady = false;
+        let timeReady = activeCategory !== "All";
+
+        const tryFinish = () => {
+            if (imagesReady && timeReady) {
+                setFilterLoading(false);
+            }
+        };
+
+        const checkDone = () => {
+            loaded++;
+            if (loaded >= imagesToLoad.length) {
+                imagesReady = true;
+                tryFinish();
+            }
+        };
+
+        imagesToLoad.forEach(src => {
+            const img = new Image();
+            img.onload = checkDone;
+            img.onerror = checkDone;
+            img.src = src;
+        });
+
+        let minTimer;
+        if (activeCategory === "All") {
+            minTimer = setTimeout(() => {
+                timeReady = true;
+                tryFinish();
+            }, 2000);
+        }
+
+        // 5 second safety fallback overall
+        const timer = setTimeout(() => setFilterLoading(false), 5000);
+        return () => {
+            clearTimeout(timer);
+            if (minTimer) clearTimeout(minTimer);
+        };
+    }, [filteredItems, activeCategory]);
+
+    const handleCategoryChange = (category) => {
+        setActiveCategory(category);
+    };
 
     const openLightbox = (index) => {
         setCurrentImageIndex(index);
@@ -312,7 +419,7 @@ const Portfolio = () => {
     };
 
     return (
-        <main className="min-h-screen bg-obsidian text-ghost pt-32 pb-24">
+        <main className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 relative">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                 {/* Header */}
@@ -346,7 +453,7 @@ const Portfolio = () => {
                     {categories.map((category) => (
                         <button
                             key={category}
-                            onClick={() => setActiveCategory(category)}
+                            onClick={() => handleCategoryChange(category)}
                             className={`px-6 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 border ${activeCategory === category
                                 ? 'bg-emerald text-obsidian border-emerald'
                                 : 'bg-transparent text-ghost border-emerald/20 hover:border-amber hover:text-amber'
@@ -357,42 +464,122 @@ const Portfolio = () => {
                     ))}
                 </motion.div>
 
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
-                    <AnimatePresence>
-                        {filteredItems.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.4, delay: index * 0.02 }}
-                                className="relative group overflow-hidden rounded mb-6 break-inside-avoid cursor-pointer"
-                                onClick={() => openLightbox(index)}
-                            >
-                                {/* Full image — natural size, zero cropping, zero black bars */}
-                                <img
-                                    src={item.src}
-                                    alt={item.category}
-                                    loading="lazy"
-                                    decoding="async"
-                                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
-                                />
-
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-obsidian/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
-                                    <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-center px-4">
-                                        <span className="text-emerald text-xs uppercase tracking-[0.2em] mb-2 block">
-                                            {item.category}
-                                        </span>
-                                        <h3 className="text-xl font-serif text-ghost tracking-wide">
-                                            {item.title}
-                                        </h3>
-                                    </div>
+                <div className="min-h-[20vh]">
+                    {filterLoading ? (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="flex flex-col items-center justify-center min-h-[40vh]"
+                        >
+                            <div className="relative w-24 h-24 mb-8">
+                                {/* The Logo */}
+                                <div className="absolute inset-0 bg-black rounded-[12px] border border-ghost/10 overflow-hidden flex items-center justify-center shadow-2xl z-10 p-2">
+                                    <img src={logo} alt="ZeroPixel" className="w-full h-full object-contain" />
                                 </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
+                                {/* Outer animated rings */}
+                                <motion.div 
+                                    className="absolute inset-[-10px] rounded-[16px] border border-amber/30"
+                                    animate={{ rotate: 360, scale: [1, 1.05, 1] }}
+                                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                />
+                                <motion.div 
+                                    className="absolute inset-[-20px] rounded-[20px] border border-emerald/20"
+                                    animate={{ rotate: -360, scale: [1, 1.1, 1] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                />
+                                {/* Pulsing glow */}
+                                <motion.div
+                                    className="absolute inset-0 bg-amber/20 rounded-[12px] blur-xl"
+                                    animate={{ opacity: [0.3, 0.8, 0.3] }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                />
+                            </div>
+                            <p className="text-ghost/60 uppercase tracking-widest text-sm font-light font-serif italic mt-4">
+                                Curating Masterpieces...
+                            </p>
+                        </motion.div>
+                    ) : (
+                        <div className="flex gap-6 items-start w-full">
+                            {masonryColumns.map((col, colIndex) => (
+                                <div key={colIndex} className="flex-1 flex flex-col gap-6">
+                                    <AnimatePresence>
+                                        {col.map((item) => {
+                                            const globalIndex = filteredItems.findIndex(x => x.id === item.id);
+                                            return (
+                                                <motion.div
+                                                    key={item.id}
+                                                    initial={{ opacity: 0, scale: 0.95 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.95 }}
+                                                    transition={{ duration: 0.4, delay: globalIndex * 0.02 }}
+                                                    className="relative group overflow-hidden rounded break-inside-avoid cursor-pointer"
+                                                    onClick={() => item.type === 'video' ? window.open(`https://www.youtube.com/watch?v=${item.videoId}`, '_blank') : openLightbox(globalIndex)}
+                                                >
+                                                    {item.type === 'video' ? (
+                                                        <div className="relative aspect-video bg-black rounded overflow-hidden group">
+                                                            <img
+                                                                src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
+                                                                alt={item.title}
+                                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                                onError={(e) => { e.target.src = `https://img.youtube.com/vi/${item.videoId}/0.jpg`; }}
+                                                            />
+                                                            <div className="absolute inset-0 bg-obsidian/20 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center">
+                                                                <div className="w-12 h-12 rounded-full bg-amber/90 flex items-center justify-center scale-90 group-hover:scale-100 transition-transform duration-300 shadow-xl shadow-amber/20 opacity-80 group-hover:opacity-100">
+                                                                    <Play className="w-5 h-5 text-obsidian fill-obsidian ml-0.5" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                                                <p className="text-ghost font-serif italic text-sm">{item.title}</p>
+                                                                {item.subtitle && <p className="text-amber/80 text-[10px] uppercase tracking-widest mt-1">{item.subtitle}</p>}
+                                                            </div>
+                                                        </div>
+                                                    ) : (
+                                                        <>
+                                                            <ImageWithLoader
+                                                                src={item.src}
+                                                                alt={item.category}
+                                                                category={item.category}
+                                                            />
+                                                            {/* Hover overlay for images */}
+                                                            <div className="absolute inset-0 bg-obsidian/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center pointer-events-none">
+                                                                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-center px-4">
+                                                                    <span className="text-emerald text-xs uppercase tracking-[0.2em] mb-2 block">
+                                                                        {item.category}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </motion.div>
+                                            );
+                                        })}
+                                    </AnimatePresence>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
+
+                {!filterLoading && activeCategory === "Promotion" && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="mt-8 text-center"
+                    >
+                        <p className="text-ghost/60 font-serif italic text-xl mb-4">Want to see more of our cinematic stories?</p>
+                        <a
+                            href="https://www.youtube.com/@zeropixelphotographystudio"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-8 py-3 border border-ghost/40 text-ghost font-bold uppercase tracking-widest text-sm rounded-full hover:border-amber hover:text-amber transition-colors"
+                        >
+                            Visit Our YouTube Channel
+                            <Play className="w-4 h-4 fill-current" />
+                        </a>
+                    </motion.div>
+                )}
 
             </div>
 

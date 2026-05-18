@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Camera, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Camera, Instagram, Facebook, Youtube } from 'lucide-react';
 import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg';
+const XIcon = ({ className }) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+);
 
 const Footer = () => {
     return (
@@ -9,7 +14,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-start gap-16">
                     <div className="space-y-8 max-w-sm">
                         <div className="flex items-center text-purple">
-                            <Link to="/" className="h-[3.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl hover:border-purple/30 transition-all">
+                            <Link to="/" className="h-[5.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl hover:border-purple/30 transition-all">
                                 <img src={logo} alt="ZEROPIXEL" className="h-full w-auto object-contain" />
                             </Link>
                         </div>
@@ -25,14 +30,17 @@ const Footer = () => {
                             <p className="text-sm text-ghost/80">+91 80 566 36662 | 90 925 36662</p>
                         </div>
                         <div className="flex gap-6 pt-4">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                            <a href="https://instagram.com/zeropixelphotographystudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
                                 <Instagram className="w-5 h-5 pointer-events-none" />
                             </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
-                                <Twitter className="w-5 h-5 pointer-events-none" />
+                            <a href="https://www.youtube.com/@zeropixelphotographystudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <Youtube className="w-5 h-5 pointer-events-none" />
                             </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
-                                <Linkedin className="w-5 h-5 pointer-events-none" />
+                            <a href="https://twitter.com/zeropixelstudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <XIcon className="w-5 h-5 pointer-events-none" />
+                            </a>
+                            <a href="https://facebook.com/zeropixelphotographystudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <Facebook className="w-5 h-5 pointer-events-none" />
                             </a>
                         </div>
                     </div>
