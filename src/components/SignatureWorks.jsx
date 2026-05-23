@@ -182,7 +182,7 @@ const SignatureWorks = () => {
                             <p
                                 style={{
                                     marginBottom: '1.5rem',
-                                    color: (work.category === 'Outdoor' || work.category === 'Drone') ? '#ffffff' : '#c9a84c',
+                                    color: '#ffffff',
                                     fontWeight: 700,
                                     letterSpacing: '0.6em',
                                     textTransform: 'uppercase',
@@ -225,7 +225,7 @@ const SignatureWorks = () => {
                                             }}
                                             style={{
                                                 display: 'inline-block',
-                                                color: i % 2 !== 0 ? '#c9a84c' : '#f0ece4',
+                                                color: i % 2 !== 0 ? '#5C7C6D' : '#f0ece4',
                                                 fontStyle: i % 2 !== 0 ? 'italic' : 'normal',
                                             }}
                                         >

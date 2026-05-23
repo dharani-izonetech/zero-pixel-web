@@ -9,9 +9,9 @@ const XIcon = ({ className }) => (
 
 const Footer = () => {
     return (
-        <footer className="bg-obsidian border-t border-purple/10 py-24">
+        <footer className="bg-obsidian border-t border-purple/10 pt-10 pb-6">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-16">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-8">
                     <div className="space-y-8 max-w-sm">
                         <div className="flex items-center text-purple">
                             <Link to="/" className="h-[5.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl hover:border-purple/30 transition-all">
@@ -71,11 +71,11 @@ const Footer = () => {
                 </div>
 
 
-                <div className="mt-24 pt-8 border-t border-purple/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60">
+                <div className="mt-6 pt-4 border-t border-purple/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60 text-center md:text-left">
                         © 2026 ZEROPIXEL STUDIO. ALL RIGHTS RESERVED.
                     </p>
-                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60">
+                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60 text-center md:text-right">
                         CRAFTED FOR THE FUTURE
                     </p>
                 </div>

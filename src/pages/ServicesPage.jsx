@@ -128,14 +128,46 @@ const ServicesPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 1, ease: "easeOut" }}
-                                className="relative overflow-hidden rounded aspect-[4/3] md:aspect-square lg:aspect-[4/3]"
+                                className="relative overflow-hidden rounded aspect-[4/3] md:aspect-square lg:aspect-[4/3] bg-black"
                             >
-                                <img
-                                    src={service.image}
-                                    alt={service.title}
-                                    className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-forest/20 mix-blend-overlay"></div>
+                                {service.id === 'promotion' ? (
+                                    <div
+                                        className="w-full h-full cursor-pointer relative"
+                                        onClick={() => window.open('https://www.youtube.com/watch?v=L9Q5F3tYmc4', '_blank')}
+                                    >
+                                        <img
+                                            src="https://img.youtube.com/vi/L9Q5F3tYmc4/maxresdefault.jpg"
+                                            alt="Promotion Video"
+                                            className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                                            onError={(e) => {
+                                                e.currentTarget.src = 'https://img.youtube.com/vi/L9Q5F3tYmc4/0.jpg';
+                                            }}
+                                        />
+                                        {/* Hover overlay and Play button */}
+                                        <div className="absolute inset-0 bg-obsidian/30 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center">
+                                            <div className="w-16 h-16 rounded-full bg-amber/90 flex items-center justify-center scale-90 group-hover:scale-100 transition-transform duration-300 shadow-xl shadow-amber/20 z-10">
+                                                <svg className="w-6 h-6 text-obsidian fill-obsidian ml-1" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        {/* Hover caption - matching Portfolio's VideoCard style */}
+                                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 text-left">
+                                            <p className="text-ghost font-serif italic text-sm">Luxury Property Showcase</p>
+                                            <p className="text-amber/80 text-[10px] uppercase tracking-widest mt-1">Real Estate Promotion</p>
+                                        </div>
+                                        <div className="absolute inset-0 bg-forest/20 mix-blend-overlay"></div>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-forest/20 mix-blend-overlay"></div>
+                                    </>
+                                )}
                             </motion.div>
 
                             {/* Decorative Elements - hidden on mobile to prevent overflow */}
@@ -184,7 +216,8 @@ const ServicesPage = () => {
                                 </ul>
 
                                 <Link
-                                    to={`/portfolio`} // Could link to specific filtered portfolio in future
+                                    to="/portfolio"
+                                    state={{ category: service.title }}
                                     className="inline-flex items-center gap-3 text-emerald uppercase tracking-widest text-sm hover:text-amber transition-colors duration-300 group"
                                 >
                                     View Examples

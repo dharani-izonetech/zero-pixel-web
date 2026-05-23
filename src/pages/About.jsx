@@ -19,7 +19,7 @@ const About = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-emerald uppercase tracking-[0.3em] text-sm mb-6"
+                        className="text-emerald uppercase tracking-[0.3em] text-sm mb-6 pt-10"
                     >
                         Our Story
                     </motion.p>
