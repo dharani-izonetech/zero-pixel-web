@@ -137,15 +137,14 @@ const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, can
 
     React.useEffect(() => {
         if (imgRef.current && imgRef.current.complete) {
-            onLoad();
+            onLoad(item.id);
         }
-    }, [onLoad]);
+    }, [onLoad, item.id]);
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.5 }}
             className="relative group overflow-hidden rounded cursor-pointer bg-obsidian min-h-[250px]"
             onClick={() => openLightbox(filteredIndex)}
@@ -155,10 +154,10 @@ const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, can
                 src={item.src}
                 alt={item.category}
                 loading="lazy"
-                onLoad={onLoad}
-                onError={onError}
-                className={`w-full h-auto block transition-all duration-1000 ease-out group-hover:scale-105 ${
-                    canReveal ? 'opacity-100 blur-0' : 'opacity-0 blur-xl scale-110'
+                onLoad={() => onLoad(item.id)}
+                onError={() => onError(item.id)}
+                className={`w-full h-auto block transition-all duration-700 ease-out group-hover:scale-105 ${
+                    canReveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
             />
 
@@ -320,12 +319,12 @@ const Portfolio = () => {
     const [cols, setCols] = useState(3);
     const [loadedIndexes, setLoadedIndexes] = useState(new Set());
 
-    React.useEffect(() => {
-        setLoadedIndexes(new Set());
-    }, [activeCategory]);
+    // We no longer clear loadedIndexes on category change because we track by absolute item.id.
+    // Since images have unique keys, they won't reuse DOM nodes incorrectly, and cached images reveal instantly.
 
     const handleImageLoad = React.useCallback((index) => {
         setLoadedIndexes(prev => {
+            if (prev.has(index)) return prev;
             const next = new Set(prev);
             next.add(index);
             return next;
@@ -334,6 +333,7 @@ const Portfolio = () => {
 
     const handleImageError = React.useCallback((index) => {
         setLoadedIndexes(prev => {
+            if (prev.has(index)) return prev;
             const next = new Set(prev);
             next.add(index);
             return next;
@@ -364,18 +364,7 @@ const Portfolio = () => {
         return columns;
     }, [filteredItems, cols]);
 
-    const sequentialRevealIndex = useMemo(() => {
-        let maxIndex = -1;
-        for (let i = 0; i < filteredItems.length; i++) {
-            if (loadedIndexes.has(i)) {
-                maxIndex = i;
-            } else {
-                break;
-            }
-        }
-        return maxIndex;
-    }, [loadedIndexes, filteredItems.length]);
-
+    // We just rely on loadedIndexes directly for each image now
     const openLightbox = (index) => {
         setCurrentImageIndex(index);
         setLightboxOpen(true);
@@ -390,7 +379,13 @@ const Portfolio = () => {
     };
 
     return (
-        <main className="min-h-screen bg-obsidian text-ghost pt-32 pb-24">
+        <motion.main 
+            className="min-h-screen bg-obsidian text-ghost pt-32 pb-24"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                 {/* Header */}
@@ -438,7 +433,7 @@ const Portfolio = () => {
                 <div className="flex gap-6 items-start">
                     {masonryColumns.map((column, colIndex) => (
                         <div key={colIndex} className="flex flex-col gap-6 flex-1">
-                            <AnimatePresence>
+                            <>
                                 {column.map((item) => {
                                     return (
                                         <PortfolioItem
@@ -446,13 +441,13 @@ const Portfolio = () => {
                                             item={item}
                                             filteredIndex={item.filteredIndex}
                                             openLightbox={openLightbox}
-                                            onLoad={() => handleImageLoad(item.filteredIndex)}
-                                            onError={() => handleImageError(item.filteredIndex)}
-                                            canReveal={item.filteredIndex <= sequentialRevealIndex}
+                                            onLoad={handleImageLoad}
+                                            onError={handleImageError}
+                                            canReveal={loadedIndexes.has(item.id)}
                                         />
                                     );
                                 })}
-                            </AnimatePresence>
+                            </>
                         </div>
                     ))}
                 </div>
@@ -466,7 +461,7 @@ const Portfolio = () => {
                 onClose={() => setLightboxOpen(false)}
                 onNavigate={navigateLightbox}
             />
-        </main>
+        </motion.main>
     );
 };
 

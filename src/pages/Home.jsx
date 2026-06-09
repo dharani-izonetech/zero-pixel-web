@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import Story from '../components/Story';
 import SignatureWorks from '../components/SignatureWorks';
@@ -10,7 +11,12 @@ import CTA from '../components/CTA';
 
 const Home = () => {
     return (
-        <main>
+        <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             <Hero />
             <Story />
             <SignatureWorks />
@@ -19,7 +25,7 @@ const Home = () => {
             <ServicesOverview />
             <ClientExperience />
             <CTA />
-        </main>
+        </motion.main>
     );
 };
 

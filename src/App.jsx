@@ -38,9 +38,11 @@ function App() {
         // Give GSAP scroll trigger lenis instances so it refreshes correctly during routing
         lenis.on('scroll', ScrollTrigger.update)
 
-        gsap.ticker.add((time) => {
+        const updateLenis = (time) => {
             lenis.raf(time * 1000)
-        })
+        }
+        
+        gsap.ticker.add(updateLenis)
 
         gsap.ticker.lagSmoothing(0)
 
@@ -49,7 +51,7 @@ function App() {
 
         return () => {
             lenis.destroy()
-            gsap.ticker.remove(lenis.raf)
+            gsap.ticker.remove(updateLenis)
         }
     }, [location.pathname])
 

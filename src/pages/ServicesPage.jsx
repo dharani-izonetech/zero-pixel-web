@@ -86,7 +86,13 @@ const ServicesPage = () => {
     ];
 
     return (
-        <main className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 overflow-x-hidden">
+        <motion.main 
+            className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 overflow-x-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             {/* Header */}
             <header className="text-center px-6 mb-24 max-w-4xl mx-auto">
                 <motion.h1
@@ -246,7 +252,7 @@ const ServicesPage = () => {
                     </Link>
                 </motion.div>
             </div>
-        </main>
+        </motion.main>
     );
 };
 

@@ -59,7 +59,13 @@ const ContactPage = () => {
     };
 
     return (
-        <main className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 font-light">
+        <motion.main 
+            className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                 {/* Header */}
@@ -314,7 +320,7 @@ const ContactPage = () => {
                 </motion.div>
 
             </div>
-        </main>
+        </motion.main>
     );
 };
 

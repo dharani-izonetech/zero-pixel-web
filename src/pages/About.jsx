@@ -11,7 +11,13 @@ const About = () => {
     ];
 
     return (
-        <main className="min-h-screen bg-obsidian text-ghost pt-28 font-light">
+        <motion.main 
+            className="min-h-screen bg-obsidian text-ghost pt-28 font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             {/* Hero Section */}
             <section className="px-6 md:px-12 max-w-7xl mx-auto mb-20 flex flex-col lg:flex-row gap-16 items-center">
                 <div className="lg:w-1/2">
@@ -122,7 +128,7 @@ const About = () => {
                     </p>
                 </motion.div>
             </section>
-        </main>
+        </motion.main>
     );
 };
 
