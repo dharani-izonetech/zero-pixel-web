@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Play } from 'lucide-react';
 import Lightbox from '../components/Lightbox';
 
 // Image Imports
@@ -140,6 +141,46 @@ const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, can
             onLoad(item.id);
         }
     }, [onLoad, item.id]);
+
+    if (item.type === 'video') {
+        return (
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="relative aspect-video group overflow-hidden rounded cursor-pointer bg-black"
+                onClick={() => window.open('https://www.youtube.com/watch?v=' + item.videoId, '_blank')}
+            >
+                <img
+                    ref={imgRef}
+                    src={'https://img.youtube.com/vi/' + item.videoId + '/maxresdefault.jpg'}
+                    alt={item.title || item.category}
+                    onLoad={() => onLoad(item.id)}
+                    onError={(e) => { 
+                        e.currentTarget.src = 'https://img.youtube.com/vi/' + item.videoId + '/0.jpg'; 
+                        onError(item.id);
+                    }}
+                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+                        canReveal ? 'opacity-100' : 'opacity-0'
+                    }`}
+                />
+                {!canReveal && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-obsidian via-white/5 to-obsidian animate-pulse" />
+                )}
+                <div className="absolute inset-0 bg-obsidian/30 group-hover:bg-transparent transition-colors duration-300 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-amber/90 flex items-center justify-center scale-90 group-hover:scale-100 transition-transform duration-300 shadow-xl shadow-amber/20">
+                        <Play className="w-5 h-5 text-obsidian fill-obsidian ml-0.5" />
+                    </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-ghost font-serif italic text-sm">{item.title}</p>
+                    {item.subtitle && (
+                        <p className="text-amber/80 text-[10px] uppercase tracking-widest mt-1">{item.subtitle}</p>
+                    )}
+                </div>
+            </motion.div>
+        );
+    }
 
     return (
         <motion.div
@@ -308,7 +349,9 @@ const Portfolio = () => {
         { id: 124, category: "Wedding", src: image124 },
         { id: 125, category: "Corporate Events", src: image125 },
         { id: 126, category: "Corporate Events", src: image126 },
-        { id: 127, category: "Promotion", src: image127 },
+        { id: 141, category: 'Promotion', type: 'video', videoId: 'L9Q5F3tYmc4', title: 'Luxury Property Showcase', subtitle: 'Real Estate Promotion' },
+        { id: 142, category: 'Promotion', type: 'video', videoId: '43p4vf2Xcn4', title: 'Brand Spotlight',          subtitle: 'Promotion Video'       },
+        { id: 143, category: 'Promotion', type: 'video', videoId: 'rSiopuke1YA', title: 'Product Launch',           subtitle: 'Corporate Events'      },
         { id: 129, category: "Indoor", src: image128 }
     ]);
 
