@@ -5,7 +5,7 @@ const Testimonials = () => {
     const [index, setIndex] = useState(0);
     const testimonials = [
         {
-            quote: "ZERO PIXELS doesn't just take photos; they capture the very essence of a digital soul. The cinematic quality is unmatched.",
+            quote: "ZEROPIXEL doesn't just take photos; they capture the very essence of a digital soul. The cinematic quality is unmatched.",
             author: "Julian Thorne",
             role: "Cyber Architect"
         },

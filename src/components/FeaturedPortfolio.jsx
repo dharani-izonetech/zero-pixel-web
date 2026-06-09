@@ -14,31 +14,31 @@ const FeaturedPortfolio = () => {
         { 
             id: 1, category: "Baby Shower", 
             src: image1, 
-            span: "col-span-1 row-span-2",
+            span: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
             position: "object-center"
         },
         { 
             id: 2, category: "Birthday", 
             src: image2, 
-            span: "col-span-2 row-span-1",
+            span: "col-span-1 row-span-1 md:col-span-2 md:row-span-1",
             position: "object-top"
         },
         { 
             id: 3, category: "Drone", 
             src: image3, 
-            span: "col-span-1 row-span-1",
+            span: "col-span-1 row-span-1 md:col-span-1 md:row-span-1",
             position: "object-center"
         },
         { 
             id: 4, category: "Indoor", 
             src: image4, 
-            span: "col-span-1 row-span-2",
+            span: "col-span-1 row-span-1 md:col-span-1 md:row-span-2",
             position: "object-top"
         },
         { 
             id: 5, category: "Outdoor", 
             src: image5, 
-            span: "col-span-2 row-span-1",
+            span: "col-span-1 row-span-1 md:col-span-2 md:row-span-1",
             position: "object-center"
         },
     ];
@@ -81,8 +81,7 @@ const FeaturedPortfolio = () => {
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4"
-                    style={{ gridTemplateRows: 'repeat(3, minmax(260px, 1fr))' }}>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 featured-portfolio-grid">
                     {portfolioItems.map((item, index) => (
                         <motion.div
                             key={item.id}

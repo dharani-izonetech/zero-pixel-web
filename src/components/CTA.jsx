@@ -55,7 +55,6 @@ const CTA = () => {
                         <ArrowRight className="absolute right-6 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0" />
                         <div className="absolute inset-0 bg-amber transform scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 z-0"></div>
                         <span className="relative z-10 flex items-center gap-2 group-hover:text-obsidian transition-colors duration-300 pointer-events-none absolute inset-0 justify-center opacity-0 group-hover:opacity-100">
-                            Book a Shoot
                         </span>
                     </Link>
 

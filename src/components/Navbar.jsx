@@ -3,6 +3,8 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Menu, X, Camera } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
+import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg';
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -34,18 +36,17 @@ const Navbar = () => {
     return (
         <>
             <nav
-                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-4 bg-obsidian/90 backdrop-blur-md border-b border-purple/10' : 'py-8 bg-transparent'
+                className={`fixed top-0 left-0 right-0 z-[120] transition-all duration-500 ${scrolled ? 'py-4 bg-obsidian/90 backdrop-blur-md border-b border-purple/10' : 'py-8 bg-transparent'
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-                    <Link to="/" className="flex items-center gap-2 text-purple">
+                    <Link to="/" className="flex items-center text-purple">
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-2"
+                            className="h-[5.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl hover:border-purple/30 transition-all"
                         >
-                            <Camera className="w-6 h-6" />
-                            <span className="text-xl font-bold tracking-tighter uppercase">ZERO PIXEL</span>
+                            <img src={logo} alt="ZEROPIXEL" className="h-full w-auto object-contain" />
                         </motion.div>
                     </Link>
 
@@ -70,18 +71,12 @@ const Navbar = () => {
                                 </Link>
                             )
                         })}
-                        <Link
-                            to="/contact"
-                            className="px-6 py-2 border border-purple/30 text-ghost text-xs font-bold uppercase tracking-widest hover:bg-purple hover:border-purple transition-all duration-300 rounded-sm"
-                        >
-                            Inquiry
-                        </Link>
                     </div>
 
                     {/* Mobile Toggle */}
                     <div className="md:hidden">
-                        <button onClick={() => setIsOpen(!isOpen)} className="text-purple relative z-[110]">
-                            {isOpen ? <X /> : <Menu />}
+                        <button onClick={() => setIsOpen(!isOpen)} className="text-amber hover:text-emerald transition-colors p-2 relative z-[130]">
+                            {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
                         </button>
                     </div>
                 </div>

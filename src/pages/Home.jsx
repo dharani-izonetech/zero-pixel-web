@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import Story from '../components/Story';
 import SignatureWorks from '../components/SignatureWorks';
 import FeaturedPortfolio from '../components/FeaturedPortfolio';
+import VideoPromotion from '../components/VideoPromotion';
 import ServicesOverview from '../components/ServicesOverview';
 import ClientExperience from '../components/ClientExperience';
 import CTA from '../components/CTA';
@@ -14,6 +15,7 @@ const Home = () => {
             <Story />
             <SignatureWorks />
             <FeaturedPortfolio />
+            <VideoPromotion />
             <ServicesOverview />
             <ClientExperience />
             <CTA />

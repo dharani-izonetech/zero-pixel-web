@@ -25,11 +25,22 @@ const Contact = () => {
                     <div className="mt-16 space-y-8">
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.5em] text-purple font-black mb-2">Connect</p>
-                            <p className="text-3xl font-black text-ghost hover:text-cyan transition-colors cursor-pointer uppercase tracking-tighter">hello@zeropixels.io</p>
+                            <p className="text-2xl md:text-3xl font-black text-ghost hover:text-cyan transition-colors cursor-pointer uppercase tracking-tighter mb-2">
+                                +91 80 566 36662
+                            </p>
+                            <p className="text-2xl md:text-3xl font-black text-ghost hover:text-cyan transition-colors cursor-pointer uppercase tracking-tighter mb-2">
+                                +91 90 925 36662
+                            </p>
+                            <p className="text-xl font-bold text-ghost/60 hover:text-amber transition-colors cursor-pointer lowercase tracking-widest mt-4">
+                                @zeropixelphotographystudio
+                            </p>
+                            <p className="text-lg font-bold text-ghost/40 hover:text-cyan transition-colors cursor-pointer lowercase tracking-widest mt-2">
+                                zeropixelstudio.in
+                            </p>
                         </div>
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.5em] text-cyan font-black mb-2">Locate</p>
-                            <p className="text-3xl font-black text-ghost uppercase tracking-tighter italic">Global Presence</p>
+                            <p className="text-3xl font-black text-ghost uppercase tracking-tighter italic">Karumandapam & LIC Colony</p>
                         </div>
                     </div>
                 </motion.div>
@@ -62,9 +73,13 @@ const Contact = () => {
                     <div className="space-y-3">
                         <label className="text-[10px] uppercase tracking-[0.5em] text-purple font-black ml-1">Objective</label>
                         <select className="w-full bg-obsidian/50 border border-ghost/10 rounded-sm px-6 py-4 text-ghost focus:outline-none focus:border-cyan/50 transition-all appearance-none font-light cursor-pointer">
-                            <option className="bg-obsidian">Visual Strategy</option>
-                            <option className="bg-obsidian">Digital Production</option>
-                            <option className="bg-obsidian">Brand Narrative</option>
+                            <option className="bg-obsidian">Wedding & Candid</option>
+                            <option className="bg-obsidian">Pre & Post Wedding Shoot</option>
+                            <option className="bg-obsidian">Cinematography</option>
+                            <option className="bg-obsidian">Newborn & Baby Shower</option>
+                            <option className="bg-obsidian">Maternity Shoot</option>
+                            <option className="bg-obsidian">Model & Product Portraits</option>
+                            <option className="bg-obsidian">Live Streaming</option>
                         </select>
                     </div>
                     <div className="space-y-3">

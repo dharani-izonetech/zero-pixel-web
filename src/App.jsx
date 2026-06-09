@@ -54,7 +54,7 @@ function App() {
     }, [location.pathname])
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-obsidian text-ghost selection:bg-purple selection:text-ghost">
+        <div ref={containerRef} className="min-h-screen bg-obsidian text-ghost selection:bg-purple selection:text-ghost overflow-x-hidden">
             <div className="grain" />
             <Navbar />
 
