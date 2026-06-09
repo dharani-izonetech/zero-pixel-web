@@ -128,8 +128,7 @@ import image121 from '../assets/images/2026-website-photos/ZPS22539.jpg';
 import image122 from '../assets/images/2026-website-photos/ZPS22559.jpg';
 import image123 from '../assets/images/2026-website-photos/ZPS22882.jpg';
 import image124 from '../assets/images/2026-website-photos/ZPS22947.jpg';
-import image125 from '../assets/images/2026-website-photos/8K4A8926 copy.jpg';
-import image126 from '../assets/images/2026-website-photos/St01.jpg';
+import image125 from '../assets/images/2026-website-photos/corporate.jpeg';
 import image127 from '../assets/images/2026-website-photos/ZPS21698.JPG';
 import image128 from '../assets/images/2026-website-photos/indoor/002.jpg';
 
@@ -156,13 +155,12 @@ const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, can
                     src={'https://img.youtube.com/vi/' + item.videoId + '/maxresdefault.jpg'}
                     alt={item.title || item.category}
                     onLoad={() => onLoad(item.id)}
-                    onError={(e) => { 
-                        e.currentTarget.src = 'https://img.youtube.com/vi/' + item.videoId + '/0.jpg'; 
+                    onError={(e) => {
+                        e.currentTarget.src = 'https://img.youtube.com/vi/' + item.videoId + '/0.jpg';
                         onError(item.id);
                     }}
-                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${
-                        canReveal ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${canReveal ? 'opacity-100' : 'opacity-0'
+                        }`}
                 />
                 {!canReveal && (
                     <div className="absolute inset-0 bg-gradient-to-tr from-obsidian via-white/5 to-obsidian animate-pulse" />
@@ -197,9 +195,8 @@ const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, can
                 loading="lazy"
                 onLoad={() => onLoad(item.id)}
                 onError={() => onError(item.id)}
-                className={`w-full h-auto block transition-all duration-700 ease-out group-hover:scale-105 ${
-                    canReveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
+                className={`w-full h-auto block transition-all duration-700 ease-out group-hover:scale-105 ${canReveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
             />
 
             {!canReveal && (
@@ -348,10 +345,9 @@ const Portfolio = () => {
         { id: 123, category: "Wedding", src: image123 },
         { id: 124, category: "Wedding", src: image124 },
         { id: 125, category: "Corporate Events", src: image125 },
-        { id: 126, category: "Corporate Events", src: image126 },
         { id: 141, category: 'Promotion', type: 'video', videoId: 'L9Q5F3tYmc4', title: 'Luxury Property Showcase', subtitle: 'Real Estate Promotion' },
-        { id: 142, category: 'Promotion', type: 'video', videoId: '43p4vf2Xcn4', title: 'Brand Spotlight',          subtitle: 'Promotion Video'       },
-        { id: 143, category: 'Promotion', type: 'video', videoId: 'rSiopuke1YA', title: 'Product Launch',           subtitle: 'Corporate Events'      },
+        { id: 142, category: 'Promotion', type: 'video', videoId: '43p4vf2Xcn4', title: 'Brand Spotlight', subtitle: 'Promotion Video' },
+        { id: 143, category: 'Promotion', type: 'video', videoId: 'rSiopuke1YA', title: 'Product Launch', subtitle: 'Corporate Events' },
         { id: 129, category: "Indoor", src: image128 }
     ]);
 
@@ -422,7 +418,7 @@ const Portfolio = () => {
     };
 
     return (
-        <motion.main 
+        <motion.main
             className="min-h-screen bg-obsidian text-ghost pt-32 pb-24"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
