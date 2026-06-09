@@ -132,6 +132,55 @@ import image126 from '../assets/images/2026-website-photos/St01.jpg';
 import image127 from '../assets/images/2026-website-photos/ZPS21698.JPG';
 import image128 from '../assets/images/2026-website-photos/indoor/002.jpg';
 
+const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, canReveal }) => {
+    const imgRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (imgRef.current && imgRef.current.complete) {
+            onLoad();
+        }
+    }, [onLoad]);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.5 }}
+            className="relative group overflow-hidden rounded cursor-pointer bg-obsidian min-h-[250px]"
+            onClick={() => openLightbox(filteredIndex)}
+        >
+            <img
+                ref={imgRef}
+                src={item.src}
+                alt={item.category}
+                loading="lazy"
+                onLoad={onLoad}
+                onError={onError}
+                className={`w-full h-auto block transition-all duration-1000 ease-out group-hover:scale-105 ${
+                    canReveal ? 'opacity-100 blur-0' : 'opacity-0 blur-xl scale-110'
+                }`}
+            />
+
+            {!canReveal && (
+                <div className="absolute inset-0 bg-gradient-to-tr from-obsidian via-white/5 to-obsidian animate-pulse" />
+            )}
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-obsidian/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-center px-4">
+                    <span className="text-emerald text-xs uppercase tracking-[0.2em] mb-2 block">
+                        {item.category}
+                    </span>
+                    <h3 className="text-xl font-serif text-ghost tracking-wide">
+                        {item.title}
+                    </h3>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
 const Portfolio = () => {
     const portfolioItems = useMemo(() => [
         { id: 1, category: "Baby Shower", src: image1 },
@@ -268,11 +317,64 @@ const Portfolio = () => {
     const [activeCategory, setActiveCategory] = useState("All");
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [cols, setCols] = useState(3);
+    const [loadedIndexes, setLoadedIndexes] = useState(new Set());
+
+    React.useEffect(() => {
+        setLoadedIndexes(new Set());
+    }, [activeCategory]);
+
+    const handleImageLoad = React.useCallback((index) => {
+        setLoadedIndexes(prev => {
+            const next = new Set(prev);
+            next.add(index);
+            return next;
+        });
+    }, []);
+
+    const handleImageError = React.useCallback((index) => {
+        setLoadedIndexes(prev => {
+            const next = new Set(prev);
+            next.add(index);
+            return next;
+        });
+    }, []);
+
+    React.useEffect(() => {
+        const updateCols = () => {
+            if (window.innerWidth < 768) setCols(1);
+            else if (window.innerWidth < 1024) setCols(2);
+            else setCols(3);
+        };
+        updateCols();
+        window.addEventListener('resize', updateCols);
+        return () => window.removeEventListener('resize', updateCols);
+    }, []);
 
     const filteredItems = useMemo(() => {
         if (activeCategory === "All") return portfolioItems;
         return portfolioItems.filter(item => item.category === activeCategory);
     }, [activeCategory, portfolioItems]);
+
+    const masonryColumns = useMemo(() => {
+        const columns = Array.from({ length: cols }, () => []);
+        filteredItems.forEach((item, i) => {
+            columns[i % cols].push({ ...item, filteredIndex: i });
+        });
+        return columns;
+    }, [filteredItems, cols]);
+
+    const sequentialRevealIndex = useMemo(() => {
+        let maxIndex = -1;
+        for (let i = 0; i < filteredItems.length; i++) {
+            if (loadedIndexes.has(i)) {
+                maxIndex = i;
+            } else {
+                break;
+            }
+        }
+        return maxIndex;
+    }, [loadedIndexes, filteredItems.length]);
 
     const openLightbox = (index) => {
         setCurrentImageIndex(index);
@@ -324,8 +426,8 @@ const Portfolio = () => {
                             key={category}
                             onClick={() => setActiveCategory(category)}
                             className={`px-6 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 border ${activeCategory === category
-                                    ? 'bg-emerald text-obsidian border-emerald'
-                                    : 'bg-transparent text-ghost border-emerald/20 hover:border-amber hover:text-amber'
+                                ? 'bg-emerald text-obsidian border-emerald'
+                                : 'bg-transparent text-ghost border-emerald/20 hover:border-amber hover:text-amber'
                                 }`}
                         >
                             {category}
@@ -333,39 +435,26 @@ const Portfolio = () => {
                     ))}
                 </motion.div>
 
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
-                    <AnimatePresence>
-                        {filteredItems.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.4, delay: index * 0.02 }}
-                                className="relative group overflow-hidden rounded mb-6 break-inside-avoid cursor-pointer"
-                                onClick={() => openLightbox(index)}
-                            >
-                                {/* Full image — natural size, zero cropping, zero black bars */}
-                                <img
-                                    src={item.src}
-                                    alt={item.category}
-                                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
-                                />
-
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-obsidian/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
-                                    <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-center px-4">
-                                        <span className="text-emerald text-xs uppercase tracking-[0.2em] mb-2 block">
-                                            {item.category}
-                                        </span>
-                                        <h3 className="text-xl font-serif text-ghost tracking-wide">
-                                            {item.title}
-                                        </h3>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
+                <div className="flex gap-6 items-start">
+                    {masonryColumns.map((column, colIndex) => (
+                        <div key={colIndex} className="flex flex-col gap-6 flex-1">
+                            <AnimatePresence>
+                                {column.map((item) => {
+                                    return (
+                                        <PortfolioItem
+                                            key={item.id}
+                                            item={item}
+                                            filteredIndex={item.filteredIndex}
+                                            openLightbox={openLightbox}
+                                            onLoad={() => handleImageLoad(item.filteredIndex)}
+                                            onError={() => handleImageError(item.filteredIndex)}
+                                            canReveal={item.filteredIndex <= sequentialRevealIndex}
+                                        />
+                                    );
+                                })}
+                            </AnimatePresence>
+                        </div>
+                    ))}
                 </div>
 
             </div>
