@@ -20,7 +20,7 @@ const Story = () => {
                         <h2 className="text-5xl md:text-8xl leading-[0.85] font-black text-ghost tracking-tighter uppercase">
                             We bridge <br />
                             <span className="text-cyan italic">Reality</span> & <br />
-                            <span className="text-purple/50">Digital Soul</span>.
+                            <span className="text-purple/50">Digital Soul</span>
                         </h2>
                     </motion.div>
 
@@ -29,9 +29,9 @@ const Story = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: 0.3 }}
-                        className="text-xl text-ghost/40 leading-relaxed font-light max-w-lg"
+                        className="text-xl text-ghost/100 leading-relaxed font-light max-w-lg"
                     >
-                        Zero Pixels isn't just a studio; it's a movement toward visual purity. We strip away the noise to find the fundamental truth in every frame, creating a dialogue between the viewer and the unseen.
+                        ZEROPIXEL isn't just a studio; it's a movement toward visual purity. We strip away the noise to find the fundamental truth in every frame, creating a dialogue between the viewer and the unseen.
                     </motion.p>
 
                     <motion.div

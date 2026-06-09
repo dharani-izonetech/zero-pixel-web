@@ -41,12 +41,12 @@ const Lightbox = ({ isOpen, items, currentIndex, onClose, onNavigate }) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-obsidian/95 backdrop-blur-sm"
+                    className="fixed inset-0 z-[200] flex items-center justify-center bg-obsidian/95 backdrop-blur-sm"
                 >
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-6 right-6 z-[110] p-3 rounded-full bg-ghost/10 text-ghost hover:bg-ghost/20 hover:text-amber transition-all shadow-sm"
+                        className="absolute top-[9rem] right-[3rem] z-[110] p-3 rounded-full bg-ghost/10 text-ghost hover:bg-ghost/20 hover:text-amber transition-all shadow-sm"
                         aria-label="Close"
                     >
                         <X className="w-8 h-8" />

@@ -1,58 +1,81 @@
-import React from 'react';
-import { Camera, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Camera, Instagram, Facebook, Youtube } from 'lucide-react';
+import logo from '../assets/images/2026-website-photos/zero-pixel-icon.jpg';
+const XIcon = ({ className }) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+);
 
 const Footer = () => {
     return (
-        <footer className="bg-obsidian border-t border-purple/10 py-24">
+        <footer className="bg-obsidian border-t border-purple/10 pt-10 pb-6">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
-                <div className="flex flex-col md:flex-row justify-between items-start gap-16">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-8">
                     <div className="space-y-8 max-w-sm">
-                        <div className="flex items-center gap-2 text-purple">
-                            <Camera className="w-6 h-6" />
-                            <span className="text-xl font-bold tracking-tighter uppercase">ZERO PIXELS</span>
+                        <div className="flex items-center text-purple">
+                            <Link to="/" className="h-[5.5rem] bg-black flex items-center justify-center overflow-hidden rounded-[12px] border border-ghost/5 shadow-2xl hover:border-purple/30 transition-all">
+                                <img src={logo} alt="ZEROPIXEL" className="h-full w-auto object-contain" />
+                            </Link>
                         </div>
                         <p className="text-ghost/60 font-light-500 leading-relaxed">
                             Breaking the boundaries of visual excellence. Digital-first, Soul-driven. Worldwide.
                         </p>
-                        <div className="flex gap-6">
-                            <Instagram className="w-5 h-5 text-purple/60 hover:text-cyan transition-colors cursor-pointer" />
-                            <Twitter className="w-5 h-5 text-purple/60 hover:text-cyan transition-colors cursor-pointer" />
-                            <Linkedin className="w-5 h-5 text-purple/60 hover:text-cyan transition-colors cursor-pointer" />
+                        <div className="space-y-1">
+                            <p className="text-xs text-ghost/40 uppercase tracking-widest font-bold mb-2">Location</p>
+                            <p className="text-sm text-ghost/80">Karumandapam & LIC Colony</p>
+                        </div>
+                        <div className="space-y-1">
+                            <p className="text-xs text-ghost/40 uppercase tracking-widest font-bold mb-2">Connect</p>
+                            <p className="text-sm text-ghost/80">+91 80 566 36662 | 90 925 36662</p>
+                        </div>
+                        <div className="flex gap-6 pt-4">
+                            <a href="https://instagram.com/zeropixelphotographystudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <Instagram className="w-5 h-5 pointer-events-none" />
+                            </a>
+                            <a href="https://www.youtube.com/@zeropixelphotographystudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <Youtube className="w-5 h-5 pointer-events-none" />
+                            </a>
+                            <a href="https://twitter.com/zeropixelstudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <XIcon className="w-5 h-5 pointer-events-none" />
+                            </a>
+                            <a href="https://facebook.com/zeropixelphotographystudio" target="_blank" rel="noopener noreferrer" className="text-purple/60 hover:text-amber transition-colors">
+                                <Facebook className="w-5 h-5 pointer-events-none" />
+                            </a>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-16 md:gap-24">
+                    <div className="grid grid-cols-2 gap-16 md:gap-32">
                         <div className="space-y-6">
                             <p className="text-xs uppercase tracking-[0.3em] font-bold text-purple">Studio</p>
                             <ul className="space-y-4 text-sm text-ghost/60 font-light-500">
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">About</li>
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Portfolio</li>
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Journal</li>
+                                <li><Link to="/" className="hover:text-amber transition-colors">Home</Link></li>
+                                <li><Link to="/about" className="hover:text-amber transition-colors">About</Link></li>
+                                <li><Link to="/portfolio" className="hover:text-amber transition-colors">Portfolio</Link></li>
+                                <li><Link to="/contact" className="hover:text-amber transition-colors">Contact</Link></li>
                             </ul>
                         </div>
                         <div className="space-y-6">
                             <p className="text-xs uppercase tracking-[0.3em] font-bold text-purple">Services</p>
                             <ul className="space-y-4 text-sm text-ghost/60 font-light-500">
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Editorial</li>
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Commercial</li>
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Prints</li>
-                            </ul>
-                        </div>
-                        <div className="hidden md:block space-y-6">
-                            <p className="text-xs uppercase tracking-[0.3em] font-bold text-purple">Legal</p>
-                            <ul className="space-y-4 text-sm text-ghost/60 font-light-500">
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Privacy</li>
-                                <li className="hover:text-cyan transition-colors cursor-pointer underline-offset-4 hover:underline">Terms</li>
+                                <li><Link to="/services#wedding" className="hover:text-amber transition-colors">Wedding</Link></li>
+                                <li><Link to="/services#corporate" className="hover:text-amber transition-colors">Corporate Events</Link></li>
+                                <li><Link to="/services#promotion" className="hover:text-amber transition-colors">Promotion</Link></li>
+                                <li><Link to="/services#babyshower" className="hover:text-amber transition-colors">Baby Shower</Link></li>
+                                <li><Link to="/services#indoor" className="hover:text-amber transition-colors">Indoor</Link></li>
+                                <li><Link to="/services#outdoor" className="hover:text-amber transition-colors">Outdoor</Link></li>
+                                <li><Link to="/services#drone" className="hover:text-amber transition-colors">Drone</Link></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-24 pt-8 border-t border-purple/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60">
-                        © 2026 ZERO PIXELS STUDIO. ALL RIGHTS RESERVED.
+
+                <div className="mt-6 pt-4 border-t border-purple/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60 text-center md:text-left">
+                        © 2026 ZEROPIXEL STUDIO. ALL RIGHTS RESERVED.
                     </p>
-                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60">
+                    <p className="text-xs uppercase tracking-[0.2em] text-ghost/60 text-center md:text-right">
                         CRAFTED FOR THE FUTURE
                     </p>
                 </div>

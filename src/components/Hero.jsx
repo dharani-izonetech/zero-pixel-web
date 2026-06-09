@@ -73,22 +73,11 @@ const Hero = () => {
                     initial={{ opacity: 0, letterSpacing: "-0.5em" }}
                     animate={{ opacity: 1, letterSpacing: "0.2em" }}
                     transition={{ duration: 1.5, ease: "circOut" }}
-                    className="cinematic-text mb-8 text-cyan/60"
+                    className="cinematic-text mb-8 text-cyan/100 font-bold text-[0.8rem] sm:text-[1.2rem]"
                 >
-                    Redefining Digital Realism
+                    Leading Photography Professionals
                 </motion.div>
 
-                {/*
-                    ✅ MOBILE TITLE FIX:
-                    - text-[2.8rem]  → mobile (fits "ZERO PIXELS" on one line at ~390px)
-                    - sm:text-[4rem]  → small tablet
-                    - md:text-[7rem]  → tablet
-                    - lg:text-[10rem] → desktop
-                    - xl:text-[12rem] → large desktop
-                    - flex-wrap added so words wrap on very small screens if needed
-                    - gap reduced on mobile: gap-2 sm:gap-4
-                    - w-full + justify-center keeps it centered at all sizes
-                */}
                 <motion.h1
                     variants={containerVariants}
                     initial="hidden"
@@ -96,8 +85,8 @@ const Hero = () => {
                     className="
                         w-full
                         text-[2.8rem] sm:text-[4rem] md:text-[7rem] lg:text-[10rem] xl:text-[12rem]
-                        font-black tracking-tighter mb-10 leading-[0.85]
-                        flex flex-wrap justify-center items-center gap-2 sm:gap-4
+                        font-black tracking-tighter mb-4 leading-[0.85]
+                        flex justify-center items-center
                     "
                 >
                     <div className="flex text-purple">
@@ -107,7 +96,7 @@ const Hero = () => {
                             </motion.span>
                         ))}
                     </div>
-                    <div className="flex text-ghost/20 italic">
+                    <div className="flex text-ghost/50 italic">
                         {title_2.split("").map((char, i) => (
                             <motion.span key={i} variants={charVariants}>
                                 {char}
@@ -115,6 +104,15 @@ const Hero = () => {
                         ))}
                     </div>
                 </motion.h1>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 1.5 }}
+                    className="text-amber italic text-lg sm:text-2xl md:text-3xl tracking-[0.5em] uppercase mb-12"
+                >
+                    Photography Studio
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -129,7 +127,7 @@ const Hero = () => {
                         </span>
                         <div className="absolute inset-0 bg-purple translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />
                     </Link>
-                    <Link to="/about" className="text-cyan/40 hover:text-cyan text-xs font-bold uppercase tracking-[0.3em] transition-colors border-b border-cyan/20 pb-1">
+                    <Link to="/about" className="text-cyan/100 hover:text-cyan text-xs font-bold uppercase tracking-[0.3em] transition-colors border-b border-cyan/20 pb-1">
                         Our Vision
                     </Link>
                 </motion.div>
@@ -142,7 +140,7 @@ const Hero = () => {
                 transition={{ duration: 1, delay: 2.2 }}
                 className="absolute bottom-12 left-12 flex items-center gap-4 rotate-[-90deg] origin-left"
             >
-                <span className="text-[10px] tracking-[0.5em] uppercase text-ghost/20 font-bold whitespace-nowrap">Scroll to explore</span>
+                <span className="text-[14px] tracking-[0.5em] uppercase text-ghost/50 font-bold whitespace-nowrap">Scroll to explore</span>
                 <div className="w-24 h-[1px] bg-purple/30 relative overflow-hidden">
                     <motion.div
                         animate={{ x: ["-100%", "100%"] }}
