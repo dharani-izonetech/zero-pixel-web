@@ -104,7 +104,7 @@ import image97 from '../assets/images/2026-website-photos/AJAP8397.jpg';
 import image98 from '../assets/images/2026-website-photos/AJAP8459.jpg';
 import image99 from '../assets/images/2026-website-photos/AJAP8594_RNS.jpg';
 import image100 from '../assets/images/2026-website-photos/AJAP8607.jpg';
-import image101 from '../assets/images/2026-website-photos/AJAP8615_RNS_RNS1.JPG';
+import image101 from '../assets/images/2026-website-photos/AJAP8615_RNS_RNS1.jpg';
 import image102 from '../assets/images/2026-website-photos/AJAP8810_RNS.jpg';
 import image103 from '../assets/images/2026-website-photos/AJAP9218 copy.jpg';
 import image104 from '../assets/images/2026-website-photos/AJAP9463 copy.jpg';
@@ -129,7 +129,7 @@ import image122 from '../assets/images/2026-website-photos/ZPS22559.jpg';
 import image123 from '../assets/images/2026-website-photos/ZPS22882.jpg';
 import image124 from '../assets/images/2026-website-photos/ZPS22947.jpg';
 import image125 from '../assets/images/2026-website-photos/corporate.jpeg';
-import image127 from '../assets/images/2026-website-photos/ZPS21698.JPG';
+import image127 from '../assets/images/2026-website-photos/ZPS21698.jpg';
 import image128 from '../assets/images/2026-website-photos/indoor/002.jpg';
 
 const PortfolioItem = ({ item, filteredIndex, openLightbox, onLoad, onError, canReveal }) => {
