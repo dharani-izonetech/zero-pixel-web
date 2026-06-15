@@ -104,7 +104,7 @@ import image97 from '../assets/images/2026-website-photos/AJAP8397.jpg';
 import image98 from '../assets/images/2026-website-photos/AJAP8459.jpg';
 import image99 from '../assets/images/2026-website-photos/AJAP8594_RNS.jpg';
 import image100 from '../assets/images/2026-website-photos/AJAP8607.jpg';
-import image101 from '../assets/images/2026-website-photos/AJAP8615_RNS_RNS1.jpg';
+import image101 from '../assets/images/2026-website-photos/AJAP8615_RNS_RNS1.JPG';
 import image102 from '../assets/images/2026-website-photos/AJAP8810_RNS.jpg';
 import image103 from '../assets/images/2026-website-photos/AJAP9218 copy.jpg';
 import image104 from '../assets/images/2026-website-photos/AJAP9463 copy.jpg';
