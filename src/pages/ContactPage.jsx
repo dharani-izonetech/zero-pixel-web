@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, MessageCircle, Send, CheckCircle, XCircle, Loader } from 'lucide-react';
 
-const WEB3FORMS_KEY = '0957585b-94b3-4fbd-99bb-b30bb1271fe8';
+const GATEWAY_URL = 'http://localhost:8080/api/v1/public/contact';
+const API_KEY = 'egw_BKP1c7o94Y_Lx7d3n0muM7dA1OzjzVaSET4MW74CNjw';
 
 const ContactPage = () => {
     const [status, setStatus] = useState('idle'); 
@@ -29,23 +30,24 @@ const ContactPage = () => {
         setStatus('loading');
 
         try {
-            const res = await fetch('https://api.web3forms.com/submit', {
+            const res = await fetch(GATEWAY_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': API_KEY
+                },
                 body: JSON.stringify({
-                    access_key: WEB3FORMS_KEY,
+                    senderName: formData.name,
+                    senderEmail: formData.email,
                     subject: `New Booking Inquiry from ${formData.name} - ZeroPixel Photography Studio`,
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone || 'Not provided',
-                    message: formData.message,
-                    from_name: 'ZeroPixel Photography Studio Website',
+                    fields: {
+                        phone: formData.phone || 'Not provided',
+                        message: formData.message,
+                    },
                 }),
             });
 
-            const data = await res.json();
-
-            if (data.success) {
+            if (res.ok) {
                 setStatus('success');
                 setFormData({ name: '', email: '', phone: '', message: '' });
             } else {
