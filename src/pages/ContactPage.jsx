@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, MessageCircle, Send, CheckCircle, XCircle, Loader } from 'lucide-react';
 
-const GATEWAY_URL = 'http://localhost:8080/api/v1/public/contact';
-const API_KEY = 'egw_BKP1c7o94Y_Lx7d3n0muM7dA1OzjzVaSET4MW74CNjw';
-
 const ContactPage = () => {
-    const [status, setStatus] = useState('idle'); 
+    const [status, setStatus] = useState('idle');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -16,7 +13,7 @@ const ContactPage = () => {
 
     const handleChange = (e) => {
         let { name, value } = e.target;
-        
+
         // Validation for phone: strictly numbers and max 10 digits
         if (name === 'phone') {
             value = value.replace(/\D/g, '').slice(0, 10);
@@ -25,43 +22,29 @@ const ContactPage = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setStatus('loading');
+        const { name, email, phone, message } = formData;
+        const subject = `New Contact from ${name}`;
+        const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        setStatus('success');
 
-        try {
-            const res = await fetch(GATEWAY_URL, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-API-Key': API_KEY
-                },
-                body: JSON.stringify({
-                    senderName: formData.name,
-                    senderEmail: formData.email,
-                    subject: `New Booking Inquiry from ${formData.name} - ZeroPixel Photography Studio`,
-                    fields: {
-                        phone: formData.phone || 'Not provided',
-                        message: formData.message,
-                    },
-                }),
-            });
-
-            if (res.ok) {
-                setStatus('success');
-                setFormData({ name: '', email: '', phone: '', message: '' });
-            } else {
-                setStatus('error');
-            }
-        } catch (err) {
-            setStatus('error');
+        if (isMobile) {
+            window.location.href = `mailto:zeropixeltry@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        } else {
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=zeropixeltry@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
         }
 
-        setTimeout(() => setStatus('idle'), 6000);
+        setTimeout(() => {
+            setFormData({ name: '', email: '', phone: '', message: '' });
+            setStatus('idle');
+        }, 3000);
     };
 
     return (
-        <motion.main 
+        <motion.main
             className="min-h-screen bg-obsidian text-ghost pt-32 pb-24 font-light"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -128,8 +111,8 @@ const ContactPage = () => {
                                 </li>
                                 <li className="flex items-center gap-4 group">
                                     <Mail className="text-emerald w-6 h-6 flex-shrink-0 group-hover:text-amber transition-colors" />
-                                    <a href="https://zeropixelstudio.in" target="_blank" rel="noreferrer" className="text-base font-medium text-ghost/70 hover:text-amber transition-colors">
-                                        zeropixelstudio.in
+                                    <a href="mailto:zeropixeltry@gmail.com" className="text-base font-medium text-ghost/70 hover:text-amber transition-colors">
+                                        zeropixeltry@gmail.com
                                     </a>
                                 </li>
                             </ul>
