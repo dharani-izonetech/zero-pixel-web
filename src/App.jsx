@@ -16,7 +16,12 @@ import ServicesPage from './pages/ServicesPage'
 import About from './pages/About'
 import ContactPage from './pages/ContactPage'
 
+import ComingSoon from './pages/ComingSoon'
+
 gsap.registerPlugin(ScrollTrigger)
+
+// Toggle Coming Soon mode (Set to false to restore full multi-page website)
+const IS_COMING_SOON = true;
 
 function App() {
     const containerRef = useRef()
@@ -54,6 +59,15 @@ function App() {
             gsap.ticker.remove(updateLenis)
         }
     }, [location.pathname])
+
+    if (IS_COMING_SOON) {
+        return (
+            <div ref={containerRef} className="min-h-screen bg-obsidian text-ghost selection:bg-purple selection:text-ghost overflow-x-hidden">
+                <div className="grain" />
+                <ComingSoon />
+            </div>
+        );
+    }
 
     return (
         <div ref={containerRef} className="min-h-screen bg-obsidian text-ghost selection:bg-purple selection:text-ghost overflow-x-hidden">
